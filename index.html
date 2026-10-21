@@ -239,11 +239,136 @@
 
         #tab-market {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            padding: 8rem 2rem 2rem 2rem;
+            padding: 6rem 2rem 2rem 2rem;
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://i.ibb.co/Y7scHND2/Empty-food-market-with-goods-20261021020148.jpg') no-repeat center center;
             background-size: cover; z-index: 50; overflow-y: auto; color: #ffffff; max-width: 100% !important; text-align: center;
         }
-        #tab-market p { color: #f1f5f9; font-size: 1.2rem; }
+
+        .market-top-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .market-mail-icon-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--neon-green);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+
+        .market-mail-icon-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .market-mail-icon-btn img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .mail-badge {
+            position: absolute;
+            top: -5px; right: -5px;
+            background: #ef4444; color: white;
+            font-size: 0.75rem; font-weight: 800;
+            width: 20px; height: 20px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: right;
+        }
+
+        .market-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 1.2rem;
+            color: #0f172a;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+        }
+
+        .market-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 22px rgba(0,255,162,0.4);
+        }
+
+        .market-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .market-card-avatar {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--header-bg);
+        }
+
+        .market-seller-name {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .market-item-img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .market-item-title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--header-bg);
+        }
+
+        .market-item-desc {
+            font-size: 0.95rem;
+            color: #334155;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .market-item-price {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #16a34a;
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
         #tab-library {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -442,7 +567,7 @@
                     <div class="interactive-paragraph">
                         <p onmouseenter="playHoverSound()">تتميز منطقة محمد وائل دياب بأنها التي أحدثت نهضة المكاتب منذ عصر الدولة العليا ودولة مملكة الطبيعة.</p>
                         <p onmouseenter="playHoverSound()">ومع بداية منتصف عصر الدولة الوسطى انطلقت النهضة العمرانية، ولكن الرياح أتلفت العديد من الأشياء بداخلها.</p>
-                        <p onmouseenter="playHoverSound()">تعتبر هذه المنطقة حالياً هي الأقل زراعية في هذه الفترة بسبب عدم إنبات النباتات بها حتى .</p>
+                        <p onmouseenter="playHoverSound()">تعتبر هذه المنطقة حالياً هي الأقل زراعية في هذه الفترة بسبب عدم إنبات النباتات بها حتى الآن.</p>
                     </div>
                 </div>
                 <img src="https://i.ibb.co/DPt0jdPT/New-Project-5.png" alt="صورة المكتب" class="region-img-side">
@@ -464,7 +589,7 @@
                 <div class="region-content">
                     <h2 class="region-title">منطقة محمد نصر</h2>
                     <div class="interactive-paragraph">
-                        <p onmouseenter="playHoverSound()">لم تتميز بأشياء كثيرة سوى زراعة دوار الشمس .</p>
+                        <p onmouseenter="playHoverSound()">لم تتميز بأشياء كثيرة سوى زراعة دوار الشمس.</p>
                         <p onmouseenter="playHoverSound()">ولكن مع الأسف لم تكن المنطقة نفسها جيدة من حيث التصميم ولا المكتب المخصص لها.</p>
                     </div>
                 </div>
@@ -481,7 +606,7 @@
                 <button class="btn-back-home" onclick="playClick(); showTab('home')">العودة للرئيسية</button>
             </div>
 
-            <div id="addNewsBox" style="display: none; background: rgba(248, 250, 252, 0.95); padding: 1.5rem; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <div id="addNewsBox" style="display: none; background: rgba(248, 250, 252, 0.95); padding: 1.5rem; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; text-align: right;">
                 <h3 style="margin-bottom: 1rem; color: var(--neon-green);">نشر خبر جديد</h3>
                 <div class="form-group">
                     <label>عنوان الخبر:</label>
@@ -493,7 +618,7 @@
                 </div>
                 <div class="form-group">
                     <label>صورة الخبر (اختياري):</label>
-                    <input type="file" id="newsImgInput" class="form-control" accept="image/*" onchange="handleFileSelect(event, 'news')">
+                    <input type="file" id="newsImgInput" class="form-control" accept="image/*" onchange="handleNewsFileSelect(event)">
                 </div>
                 <button class="btn-action" onclick="saveNews()">نشر الخبر الآن</button>
             </div>
@@ -505,7 +630,7 @@
         <div id="tab-login" class="tab-content centered-tab" style="display: none;">
             <div id="loginFormSection">
                 <h2 class="page-title">تسجيل الدخول والبيانات الرسمية</h2>
-                <form onsubmit="handleLogin(event)" style="max-width: 450px; margin: 0 auto;">
+                <form onsubmit="handleLogin(event)" style="max-width: 450px; margin: 0 auto; text-align: right;">
                     <div class="form-group">
                         <label>اختر اسم المواطن:</label>
                         <select id="citizenSelect" class="form-control" required>
@@ -540,8 +665,8 @@
                         <input type="file" id="changeAvatarInput" accept="image/*" style="display: none;" onchange="updateProfileAvatar(event)">
                     </div>
 
-                    <h3 id="profileNameDisplay" style="font-size: 1.8rem; margin-bottom: 0.2rem;"></h3>
-                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">رقم جواز السفر: <b id="profilePassportDisplay" style="color: var(--neon-green);"></b></p>
+                    <h3 id="profileNameDisplay" style="font-size: 1.8rem; margin-bottom: 0.2rem; color: #ffffff;"></h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem; color: #f1f5f9;">رقم جواز السفر: <b id="profilePassportDisplay" style="color: var(--neon-green);"></b></p>
                     <button class="btn-action btn-danger" onclick="playClick(); promptLogout()" style="max-width: 200px;">تسجيل الخروج</button>
                 </div>
             </div>
@@ -549,9 +674,43 @@
 
         <!-- Tab: Market -->
         <div id="tab-market" class="tab-content" style="display: none;">
-            <h2 class="page-title" style="color: var(--neon-green); text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">سوق دولة فينا</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">قريباً.. عرض المنتجات والمحاصيل الزراعية بأحمد وائل ومحمد نصر.</p>
-            <div style="text-align: center;">
+            <h2 class="page-title" style="color: var(--neon-green); text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem;">سوق دولة فينا</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: #f1f5f9;">منصة التجارة الرسمية لعرض المحاصيل والسلع والمتبادلات التجارية.</p>
+            
+            <div class="market-top-bar">
+                <button class="btn-action" onclick="playClick(); toggleMarketForm()">+ إضافة سلعة جديدة للسوق</button>
+                <div class="market-mail-icon-btn" onclick="playClick(); openMailModal()" title="بريد السوق والعروض الواردة">
+                    <img src="https://i.postimg.cc/RZxQNQ0z/An-icon-image-of-mail-20261021034132.jpg" alt="بريد السوق">
+                    <span id="mailBadge" class="mail-badge" style="display: none;">0</span>
+                </div>
+            </div>
+
+            <div id="addMarketBox" style="display: none; background: rgba(255, 255, 255, 0.95); padding: 1.5rem; border-radius: 12px; border: 2px solid var(--neon-green); max-width: 550px; margin: 0 auto 2rem auto; text-align: right; color: #0f172a;">
+                <h3 style="margin-bottom: 1rem; color: var(--header-bg); text-align: center;">إضافة سلعة للبيع</h3>
+                <div class="form-group">
+                    <label>اسم السلعة:</label>
+                    <input type="text" id="marketItemTitle" class="form-control" placeholder="مثلاً: محصول طماطم خصبة">
+                </div>
+                <div class="form-group">
+                    <label>وصف السلعة:</label>
+                    <textarea id="marketItemDesc" class="form-control" rows="3" placeholder="تفاصيل ومميزات السلعة..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>السعر (العملة - القيمة التجارية):</label>
+                    <input type="text" id="marketItemPrice" class="form-control" placeholder="مثلاً: 150 عملة فينا">
+                </div>
+                <div class="form-group">
+                    <label>صورة السلعة:</label>
+                    <input type="file" id="marketItemImgInput" class="form-control" accept="image/*" onchange="handleMarketFileSelect(event)">
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn-action" onclick="saveMarketItem()">نشر السلعة في السوق</button>
+                </div>
+            </div>
+
+            <div id="marketItemsGrid" class="market-grid"></div>
+
+            <div style="text-align: center; margin-top: 3rem;">
                 <button class="btn-back-home" onclick="playClick(); showTab('home')">العودة للرئيسية</button>
             </div>
         </div>
@@ -559,13 +718,13 @@
         <!-- Tab: Library -->
         <div id="tab-library" class="tab-content" style="display: none;">
             <h2 class="page-title" style="color: var(--neon-green); text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem;">المكتبة الإلكترونية</h2>
-            <p style="text-align: center; margin-bottom: 1.5rem;">سجلات وثائق نهضة المكاتب وتاريخ العصور العليا والوسطى.</p>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: #f1f5f9;">سجلات وثائق نهضة المكاتب وتاريخ العصور العليا والوسطى.</p>
             
             <div style="text-align: center; margin-bottom: 1.5rem;">
                 <button class="btn-action" onclick="playClick(); toggleDocForm()">+ إضافة مستند جديد</button>
             </div>
 
-            <div id="addDocBox" style="display: none; background: rgba(255, 255, 255, 0.95); padding: 1.5rem; border-radius: 12px; border: 2px solid var(--neon-green); max-width: 500px; margin: 0 auto 2rem auto; text-align: right;">
+            <div id="addDocBox" style="display: none; background: rgba(255, 255, 255, 0.95); padding: 1.5rem; border-radius: 12px; border: 2px solid var(--neon-green); max-width: 500px; margin: 0 auto 2rem auto; text-align: right; color: #0f172a;">
                 <h3 style="margin-bottom: 1rem; color: var(--header-bg); text-align: center;">رفع مستند للمكتبة</h3>
                 <div class="form-group">
                     <label>عنوان المستند (إجباري):</label>
@@ -594,15 +753,19 @@
         <!-- Tab: Other -->
         <div id="tab-other" class="tab-content centered-tab" style="display: none;">
             <h2 class="page-title">معلومات دولة فينا</h2>
-            <div style="background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 12px; border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-                <h3 style="color: var(--header-bg); font-size: 1.5rem; margin-bottom: 1rem;">معلومات المطور</h3>
-                <p style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">تم تصنيع هذا الموقع بواسطة:</p>
-                <p style="font-size: 1.4rem; font-weight: 900; color: var(--neon-green); text-shadow: 0 0 6px rgba(0,255,162,0.3);">محمد وائل دياب</p>
+            <div style="background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 12px; border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 2rem; text-align: right; color: #0f172a;">
+                <h3 style="color: var(--header-bg); font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">معلومات المطور</h3>
+                <p style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; text-align: center;">تم تصنيع هذا الموقع بواسطة:</p>
+                <p style="font-size: 1.4rem; font-weight: 900; color: var(--header-bg); text-shadow: 0 0 6px rgba(0,255,162,0.3); text-align: center;">محمد وائل دياب</p>
             </div>
 
             <h2 class="page-title" style="margin-top: 2rem;">حالة اتصال المواطنين</h2>
-            <p style="margin-bottom: 1.5rem; color: #64748b;">متابعة حالة تواجد وحضور مواطني دولة فينا النشطين حالياً:</p>
+            <p style="margin-bottom: 1.5rem; color: #f1f5f9;">متابعة حالة تواجد وحضور مواطني دولة فينا النشطين حالياً:</p>
             <div id="citizensStatusContainer" class="citizens-status-grid"></div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn-back-home" onclick="playClick(); showTab('home')">العودة للرئيسية</button>
+            </div>
         </div>
 
         <!-- Tab: Contact -->
@@ -643,8 +806,39 @@
         </div>
     </div>
 
+    <!-- نافذة تفاصيل السلعة ومراسلة البائع -->
+    <div id="itemModal" class="modal-overlay">
+        <div class="modal-box" style="max-width: 500px; text-align: right;">
+            <h3 id="modalItemTitle" style="color: var(--header-bg); font-size: 1.5rem; margin-bottom: 0.5rem;"></h3>
+            <p id="modalItemSeller" style="font-size: 0.9rem; font-weight: 700; color: #64748b; margin-bottom: 1rem;"></p>
+            <img id="modalItemImg" src="" alt="صورة السلعة" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; display: none;">
+            <p id="modalItemDesc" style="font-size: 1rem; color: #1e293b; margin-bottom: 1rem; line-height: 1.6;"></p>
+            <p id="modalItemPrice" style="font-size: 1.1rem; font-weight: 900; color: #16a34a; margin-bottom: 1.5rem;"></p>
+            
+            <div style="border-top: 1px solid #cbd5e1; padding-top: 1rem;">
+                <h4 style="font-size: 1.1rem; color: var(--header-bg); margin-bottom: 0.5rem;">إرسال عرض أو رسالة للبائع:</h4>
+                <textarea id="buyerOfferText" class="form-control" rows="3" placeholder="اكتب عرضك أو استفسارك هنا للبائع..."></textarea>
+                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 1rem;">
+                    <button class="btn-action" onclick="sendMarketOffer()">إرسال العرض</button>
+                    <button class="btn-action" style="background: #64748b; color: white;" onclick="closeItemModal()">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة بريد السوق (العروض الواردة) -->
+    <div id="mailModal" class="modal-overlay">
+        <div class="modal-box" style="max-width: 600px; text-align: right; max-height: 80vh; overflow-y: auto;">
+            <h3 style="color: var(--header-bg); font-size: 1.6rem; margin-bottom: 1rem; text-align: center;">📬 بريد السوق وعروض الشراء</h3>
+            <div id="mailMessagesList" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 1.5rem;"></div>
+            <div style="text-align: center;">
+                <button class="btn-action" style="background: #64748b;" onclick="closeMailModal()">إغلاق البريد</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // إعدادات JSONBin المباشرة
+        // إعدادات JSONBin المباشرة بمفاتيحك الخاصة
         const JSONBIN_BIN_ID = "6ad8e040ffd5d160537ff750";
         const JSONBIN_MASTER_KEY = "$2a$10$P/2z/U0R9WyoTr2m.ELvFOkLLodClvA0VIsgdRXvhbXuLDVoic926";
 
@@ -747,11 +941,15 @@
         let newsList = [];
         let whatsappMessages = [];
         let libraryDocs = [];
-        let tempNewsImgData = null;
+        let marketItems = [];
+        let marketMails = [];
 
+        let tempNewsImgData = null;
+        let tempMarketImgData = null;
         let tempDocFileData = null;
         let tempDocFileType = null;
         let tempDocCoverData = null;
+        let selectedItemForOffer = null;
 
         let mediaRecorder = null;
         let audioChunks = [];
@@ -771,11 +969,15 @@
                         newsList = result.record.news || [];
                         whatsappMessages = result.record.whatsapp || [];
                         libraryDocs = result.record.library || [];
+                        marketItems = result.record.market || [];
+                        marketMails = result.record.mails || [];
 
                         renderNewsUI();
                         renderWhatsappMessages();
                         renderLibraryDocs();
+                        renderMarketItems();
                         renderCitizensStatus();
+                        updateMailBadge();
                     }
                 }
             } catch (err) {
@@ -795,7 +997,9 @@
                     body: JSON.stringify({
                         news: newsList,
                         whatsapp: whatsappMessages,
-                        library: libraryDocs
+                        library: libraryDocs,
+                        market: marketItems,
+                        mails: marketMails
                     })
                 });
             } catch (err) {
@@ -806,49 +1010,239 @@
         window.addEventListener('DOMContentLoaded', () => {
             renderSessionUI();
             fetchFromCloud();
-            // تحديث تلقائي كل 5 ثوانٍ لمزامنة أي تغييرات من الأجهزة الأخرى
-            setInterval(fetchFromCloud, 5000);
+            setInterval(fetchFromCloud, 5000); // مزامنة تلقائية كل 5 ثوانٍ
         });
 
-        function handleFileSelect(event, targetType) {
+        function handleNewsFileSelect(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    let width = img.width;
-                    let height = img.height;
-                    const maxDim = 500;
-
-                    if (width > height && width > maxDim) {
-                        height *= maxDim / width;
-                        width = maxDim;
-                    } else if (height > maxDim) {
-                        width *= maxDim / height;
-                        height = maxDim;
-                    }
-
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, width, height);
-                    
-                    tempNewsImgData = canvas.toDataURL('image/jpeg', 0.8);
-                    playClick();
-                };
-                img.src = e.target.result;
+                tempNewsImgData = e.target.result;
+                playClick();
             };
             reader.readAsDataURL(file);
         }
 
+        function handleMarketFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                tempMarketImgData = e.target.result;
+                playClick();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function toggleMarketForm() {
+            if (!currentSession) {
+                playError();
+                alert('يجب تسجيل الدخول أولاً لإضافة سلعة للسوق!');
+                showTab('login');
+                return;
+            }
+            const box = document.getElementById('addMarketBox');
+            if (box) box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'block' : 'none';
+        }
+
+        function saveMarketItem() {
+            if (!currentSession) return;
+            const title = document.getElementById('marketItemTitle').value.trim();
+            const desc = document.getElementById('marketItemDesc').value.trim();
+            const price = document.getElementById('marketItemPrice').value.trim();
+
+            if (!title || !price) {
+                playError();
+                alert('يرجى إدخال عنوان السلعة والسعر على الأقل.');
+                return;
+            }
+
+            playSuccess();
+            marketItems.unshift({
+                id: Date.now(),
+                seller: currentSession.name,
+                avatar: currentSession.avatar,
+                title: title,
+                desc: desc,
+                price: price,
+                img: tempMarketImgData || 'https://i.ibb.co/Y7scHND2/Empty-food-market-with-goods-20261021020148.jpg'
+            });
+
+            saveToCloud();
+            renderMarketItems();
+
+            document.getElementById('marketItemTitle').value = '';
+            document.getElementById('marketItemDesc').value = '';
+            document.getElementById('marketItemPrice').value = '';
+            document.getElementById('marketItemImgInput').value = '';
+            tempMarketImgData = null;
+            document.getElementById('addMarketBox').style.display = 'none';
+            alert('تم نشر السلعة في السوق بنجاح!');
+        }
+
+        function renderMarketItems() {
+            const container = document.getElementById('marketItemsGrid');
+            if (!container) return;
+
+            if (marketItems.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #f1f5f9;">لا توجد سلع معروضة في السوق حالياً.</p>';
+                return;
+            }
+
+            container.innerHTML = marketItems.map(item => {
+                const canDelete = currentSession && currentSession.name === item.seller;
+                const deleteBtn = canDelete ? `<button class="btn-delete-news" style="top:10px; left:10px;" onclick="event.stopPropagation(); deleteMarketItem(${item.id})">🗑️</button>` : '';
+
+                return `
+                    <div class="market-card" onclick="openItemModal(${item.id})">
+                        ${deleteBtn}
+                        <div class="market-card-header">
+                            <img src="${item.avatar || DEFAULT_AVATAR}" class="market-card-avatar" alt="البائع">
+                            <span class="market-seller-name">${escapeHTML(item.seller)}</span>
+                        </div>
+                        <img src="${item.img}" class="market-item-img" alt="سلعة">
+                        <h4 class="market-item-title">${escapeHTML(item.title)}</h4>
+                        <p class="market-item-desc">${escapeHTML(item.desc)}</p>
+                        <div class="market-item-price">
+                            <span>السعر:</span>
+                            <span style="color: #16a34a;">${escapeHTML(item.price)}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function deleteMarketItem(id) {
+            if (confirm('هل أنت متأكد من حذف هذه السلعة؟')) {
+                playClick();
+                marketItems = marketItems.filter(i => i.id !== id);
+                saveToCloud();
+                renderMarketItems();
+            }
+        }
+
+        function openItemModal(id) {
+            playClick();
+            selectedItemForOffer = marketItems.find(i => i.id === id);
+            if (!selectedItemForOffer) return;
+
+            document.getElementById('modalItemTitle').textContent = selectedItemForOffer.title;
+            document.getElementById('modalItemSeller').textContent = 'البائع: ' + selectedItemForOffer.seller;
+            const imgElem = document.getElementById('modalItemImg');
+            if (selectedItemForOffer.img) {
+                imgElem.src = selectedItemForOffer.img;
+                imgElem.style.display = 'block';
+            } else {
+                imgElem.style.display = 'none';
+            }
+            document.getElementById('modalItemDesc').textContent = selectedItemForOffer.desc || 'لا يوجد وصف إضافي.';
+            document.getElementById('modalItemPrice').textContent = 'السعر المطلوب: ' + selectedItemForOffer.price;
+            document.getElementById('buyerOfferText').value = '';
+            document.getElementById('itemModal').style.display = 'flex';
+        }
+
+        function closeItemModal() {
+            playClick();
+            document.getElementById('itemModal').style.display = 'none';
+            selectedItemForOffer = null;
+        }
+
+        function sendMarketOffer() {
+            if (!currentSession) {
+                playError();
+                alert('يجب تسجيل الدخول لإرسال عرض شراء!');
+                showTab('login');
+                closeItemModal();
+                return;
+            }
+            const text = document.getElementById('buyerOfferText').value.trim();
+            if (!text) {
+                playError();
+                alert('يرجى كتابة نص العرض أو الرسالة أولاً.');
+                return;
+            }
+
+            playSuccess();
+            marketMails.unshift({
+                id: Date.now(),
+                seller: selectedItemForOffer.seller,
+                buyer: currentSession.name,
+                itemTitle: selectedItemForOffer.title,
+                message: text,
+                time: new Date().toLocaleDateString('ar-EG') + ' - ' + new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })
+            });
+
+            saveToCloud();
+            updateMailBadge();
+            alert('تم إرسال العرض بنجاح إلى بريد البائع!');
+            closeItemModal();
+        }
+
+        function openMailModal() {
+            if (!currentSession) {
+                playError();
+                alert('يجب تسجيل الدخول أولاً للاطلاع على بريدك وعروضك الواردة!');
+                showTab('login');
+                return;
+            }
+            renderMailMessages();
+            document.getElementById('mailModal').style.display = 'flex';
+        }
+
+        function closeMailModal() {
+            playClick();
+            document.getElementById('mailModal').style.display = 'none';
+        }
+
+        function renderMailMessages() {
+            const container = document.getElementById('mailMessagesList');
+            if (!container) return;
+
+            const myMails = marketMails.filter(m => m.seller === currentSession.name);
+
+            if (myMails.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #64748b;">لا توجد رسائل أو عروض شراء واردة في بريدك حالياً.</p>';
+                return;
+            }
+
+            container.innerHTML = myMails.map(m => `
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 1rem; border-radius: 8px; position: relative;">
+                    <button class="btn-delete-news" style="top:10px; left:10px;" onclick="deleteMail(${m.id})">🗑️</button>
+                    <h4 style="color: var(--header-bg); font-size: 1.1rem; margin-bottom: 4px;">سلعة: ${escapeHTML(m.itemTitle)}</h4>
+                    <p style="font-size: 0.9rem; font-weight: 700; color: #334155; margin-bottom: 6px;">المشتري/المستفسر: ${escapeHTML(m.buyer)}</p>
+                    <p style="font-size: 1rem; color: #0f172a; margin-bottom: 6px; background: #ffffff; padding: 8px; border-radius: 6px;">${escapeHTML(m.message)}</p>
+                    <span style="font-size: 0.75rem; color: #64748b;">📅 ${escapeHTML(m.time)}</span>
+                </div>
+            `).join('');
+        }
+
+        function deleteMail(id) {
+            playClick();
+            marketMails = marketMails.filter(m => m.id !== id);
+            saveToCloud();
+            renderMailMessages();
+            updateMailBadge();
+        }
+
+        function updateMailBadge() {
+            if (!currentSession) {
+                document.getElementById('mailBadge').style.display = 'none';
+                return;
+            }
+            const unreadCount = marketMails.filter(m => m.seller === currentSession.name).length;
+            const badge = document.getElementById('mailBadge');
+            if (unreadCount > 0) {
+                badge.textContent = unreadCount;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
         function toggleDocForm() {
             const box = document.getElementById('addDocBox');
-            if (box) {
-                box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'block' : 'none';
-            }
+            if (box) box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'block' : 'none';
         }
 
         function handleDocFileSelect(event) {
@@ -884,7 +1278,6 @@
         function handleDocCoverSelect(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = function(e) {
                 tempDocCoverData = e.target.result;
@@ -961,10 +1354,7 @@
                     mediaHtml = `<video controls src="${doc.file}"></video>`;
                 } else if (doc.type === 'audio') {
                     const coverImg = doc.cover ? `<img src="${doc.cover}" alt="غلاف الصوت" style="height: 120px; object-fit: cover;">` : `<div style="height: 60px; display:flex; align-items:center; justify-content:center; background:#f1f5f9; border-radius:6px; width:100%; font-weight:800; color:#007a05;">🎵 ملف صوتي</div>`;
-                    mediaHtml = `
-                        ${coverImg}
-                        <audio controls src="${doc.file}"></audio>
-                    `;
+                    mediaHtml = `${coverImg}<audio controls src="${doc.file}"></audio>`;
                 } else if (doc.type === 'pdf') {
                     mediaHtml = `
                         <div style="height: 120px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#f8fafc; border-radius:8px; width:100%; border:1px solid #cbd5e1;">
@@ -1001,7 +1391,6 @@
                     canvas.width = size;
                     canvas.height = size;
                     const ctx = canvas.getContext('2d');
-                    
                     ctx.drawImage(img, 0, 0, size, size);
                     const newAvatarUrl = canvas.toDataURL('image/jpeg', 0.85);
 
@@ -1036,15 +1425,10 @@
                     }
                 }
             });
-            if (tabName === 'other') {
-                renderCitizensStatus();
-            }
-            if (tabName === 'contact') {
-                renderWhatsappMessages();
-            }
-            if (tabName === 'library') {
-                renderLibraryDocs();
-            }
+            if (tabName === 'other') renderCitizensStatus();
+            if (tabName === 'contact') renderWhatsappMessages();
+            if (tabName === 'library') renderLibraryDocs();
+            if (tabName === 'market') renderMarketItems();
             window.scrollTo(0, 0);
         }
 
@@ -1071,6 +1455,7 @@
                     renderSessionUI();
                     renderNewsUI();
                     renderCitizensStatus();
+                    updateMailBadge();
                 } else {
                     playError();
                     alert('خطأ في البيانات! الكود أو رقم جواز السفر غير صحيح.');
@@ -1097,11 +1482,13 @@
                 if (passDisp) passDisp.textContent = currentSession.passport;
                 if (picDisp) picDisp.src = currentSession.avatar;
                 if (navProfilePic) navProfilePic.src = currentSession.avatar;
+                updateMailBadge();
             } else {
                 if (loginFormSection) loginFormSection.style.display = 'block';
                 if (profileSection) profileSection.style.display = 'none';
                 if (navLoginText) navLoginText.textContent = 'تسجيل الدخول والبيانات';
                 if (navProfilePic) navProfilePic.src = DEFAULT_LOGO;
+                updateMailBadge();
             }
         }
 
@@ -1147,6 +1534,7 @@
             renderSessionUI();
             renderNewsUI();
             renderCitizensStatus();
+            updateMailBadge();
             showTab('home');
         }
 
@@ -1158,17 +1546,13 @@
                 return;
             }
             const box = document.getElementById('addNewsBox');
-            if (box) {
-                box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'block' : 'none';
-            }
+            if (box) box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'block' : 'none';
         }
 
         function saveNews() {
             if (!currentSession) return;
-
             const titleInput = document.getElementById('newsTitleInput');
             const contentInput = document.getElementById('newsContentInput');
-            
             if (!titleInput || !contentInput) return;
 
             const title = titleInput.value.trim();
@@ -1200,9 +1584,7 @@
             contentInput.value = '';
             const imgInput = document.getElementById('newsImgInput');
             if (imgInput) imgInput.value = '';
-            
-            const addBox = document.getElementById('addNewsBox');
-            if (addBox) addBox.style.display = 'none';
+            document.getElementById('addNewsBox').style.display = 'none';
             tempNewsImgData = null;
 
             alert('تم نشر الخبر بنجاح!');
@@ -1224,32 +1606,31 @@
 
             if (newsList.length === 0) {
                 container.innerHTML = '<p style="text-align: center; color: #f1f5f9; padding: 1rem 0;">لا توجد أخبار منشورة حالياً.</p>';
-            } else {
-                container.innerHTML = newsList.map((item) => {
-                    const authorName = item.author || 'حكومة فينا';
-                    const canDelete = currentSession && (currentSession.name === item.author || authorName === 'حكومة فينا');
-                    const deleteBtnHtml = canDelete ? `<button class="btn-delete-news" onclick="deleteNews(${item.id})">🗑️ حذف الخبر</button>` : '';
-                    const imageHtml = item.img ? `<img src="${item.img}" alt="صورة الخبر" class="news-card-img">` : '';
-
-                    return `
-                        <div class="news-card">
-                            ${deleteBtnHtml}
-                            <h4 style="font-size: 1.6rem; color: var(--neon-green); margin-bottom: 4px;">${escapeHTML(item.title)}</h4>
-                            <div style="font-size: 0.88rem; color: #64748b; font-weight: 700; margin-bottom: 8px;">
-                                📅 ${escapeHTML(item.time)} | 👤 الناشر: ${escapeHTML(authorName)}
-                            </div>
-                            ${imageHtml}
-                            <p style="font-size: 1rem; color: #1e293b; line-height: 1.7;">${escapeHTML(item.content)}</p>
-                        </div>
-                    `;
-                }).join('');
+                return;
             }
+
+            container.innerHTML = newsList.map((item) => {
+                const authorName = item.author || 'حكومة فينا';
+                const canDelete = currentSession && (currentSession.name === item.author || authorName === 'حكومة فينا');
+                const deleteBtnHtml = canDelete ? `<button class="btn-delete-news" onclick="deleteNews(${item.id})">🗑️ حذف الخبر</button>` : '';
+                const imageHtml = item.img ? `<img src="${item.img}" alt="صورة الخبر" class="news-card-img">` : '';
+
+                return `
+                    <div class="news-card">
+                        ${deleteBtnHtml}
+                        <h4 style="font-size: 1.6rem; color: var(--neon-green); margin-bottom: 4px;">${escapeHTML(item.title)}</h4>
+                        <div style="font-size: 0.88rem; color: #64748b; font-weight: 700; margin-bottom: 8px;">
+                            📅 ${escapeHTML(item.time)} | 👤 الناشر: ${escapeHTML(authorName)}
+                        </div>
+                        ${imageHtml}
+                        <p style="font-size: 1rem; color: #1e293b; line-height: 1.7;">${escapeHTML(item.content)}</p>
+                    </div>
+                `;
+            }).join('');
         }
 
         function handleWhatsappKey(e) {
-            if (e.key === 'Enter') {
-                sendWhatsappText();
-            }
+            if (e.key === 'Enter') sendWhatsappText();
         }
 
         function sendWhatsappText() {
@@ -1295,7 +1676,6 @@
             playSuccess();
             const now = new Date();
             const timeStr = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
-
             const mediaUrl = URL.createObjectURL(file);
 
             whatsappMessages.push({
