@@ -591,12 +591,12 @@
             </div>
         </div>
 
-        <!-- Tab: Other (تم تحديث هذا القسم ليحتوي على معلومات صنع الموقع بواسطة محمد وائل دياب) -->
+        <!-- Tab: Other -->
         <div id="tab-other" class="tab-content centered-tab" style="display: none;">
             <h2 class="page-title">معلومات دولة فينا</h2>
             <div style="background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 12px; border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 2rem;">
                 <h3 style="color: var(--header-bg); font-size: 1.5rem; margin-bottom: 1rem;">معلومات المطور</h3>
-                <p style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">تم تصنيع وبرمجة هذا الموقع بواسطة:</p>
+                <p style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">تم تصنيع هذا الموقع بواسطة:</p>
                 <p style="font-size: 1.4rem; font-weight: 900; color: var(--neon-green); text-shadow: 0 0 6px rgba(0,255,162,0.3);">محمد وائل دياب</p>
             </div>
 
@@ -753,6 +753,30 @@
         let audioChunks = [];
         let isRecording = false;
 
+        // مزامنة البيانات السحابية والمحلية عبر BroadcastChannel لتحديث كل الأجهزة المفتوحة لحظياً
+        const finaChannel = new BroadcastChannel('fina_state_channel');
+        finaChannel.onmessage = function (event) {
+            if (event.data.type === 'SYNC_DATA') {
+                newsList = event.data.news || newsList;
+                whatsappMessages = event.data.whatsapp || whatsappMessages;
+                libraryDocs = event.data.library || libraryDocs;
+                
+                renderNewsUI();
+                renderWhatsappMessages();
+                renderLibraryDocs();
+                renderCitizensStatus();
+            }
+        };
+
+        function broadcastState() {
+            finaChannel.postMessage({
+                type: 'SYNC_DATA',
+                news: newsList,
+                whatsapp: whatsappMessages,
+                library: libraryDocs
+            });
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             renderSessionUI();
             renderNewsUI();
@@ -871,6 +895,7 @@
             });
 
             localStorage.setItem('fina_library_db', JSON.stringify(libraryDocs));
+            broadcastState();
             renderLibraryDocs();
 
             titleInput.value = '';
@@ -891,6 +916,7 @@
                 playClick();
                 libraryDocs = libraryDocs.filter(d => d.id !== docId);
                 localStorage.setItem('fina_library_db', JSON.stringify(libraryDocs));
+                broadcastState();
                 renderLibraryDocs();
             }
         }
@@ -959,6 +985,7 @@
                     currentSession.avatar = newAvatarUrl;
                     localStorage.setItem('fina_user_session', JSON.stringify(currentSession));
                     localStorage.setItem('fina_avatar_' + currentSession.name, newAvatarUrl);
+                    broadcastState();
                     
                     playSuccess();
                     renderSessionUI();
@@ -1019,6 +1046,7 @@
                         avatar: localStorage.getItem('fina_avatar_' + citizen) || DEFAULT_AVATAR
                     };
                     localStorage.setItem('fina_user_session', JSON.stringify(currentSession));
+                    broadcastState();
                     renderSessionUI();
                     renderNewsUI();
                     renderCitizensStatus();
@@ -1095,6 +1123,7 @@
             localStorage.removeItem('fina_user_session');
             currentSession = null;
             closeLogoutModal();
+            broadcastState();
             renderSessionUI();
             renderNewsUI();
             renderCitizensStatus();
@@ -1145,6 +1174,7 @@
             });
             
             localStorage.setItem('fina_news_db', JSON.stringify(newsList));
+            broadcastState();
             renderNewsUI();
             
             titleInput.value = '';
@@ -1165,6 +1195,7 @@
                 playClick();
                 newsList = newsList.filter(item => item.id !== newsId);
                 localStorage.setItem('fina_news_db', JSON.stringify(newsList));
+                broadcastState();
                 renderNewsUI();
             }
         }
@@ -1228,6 +1259,7 @@
             });
 
             localStorage.setItem('fina_whatsapp_db', JSON.stringify(whatsappMessages));
+            broadcastState();
             input.value = '';
             renderWhatsappMessages();
         }
@@ -1258,6 +1290,7 @@
             });
 
             localStorage.setItem('fina_whatsapp_db', JSON.stringify(whatsappMessages));
+            broadcastState();
             renderWhatsappMessages();
             event.target.value = '';
         }
@@ -1297,6 +1330,7 @@
                         });
 
                         localStorage.setItem('fina_whatsapp_db', JSON.stringify(whatsappMessages));
+                        broadcastState();
                         renderWhatsappMessages();
                     };
 
@@ -1328,6 +1362,7 @@
                 playClick();
                 whatsappMessages = whatsappMessages.filter(m => m.id !== msgId);
                 localStorage.setItem('fina_whatsapp_db', JSON.stringify(whatsappMessages));
+                broadcastState();
                 renderWhatsappMessages();
             }
         }
