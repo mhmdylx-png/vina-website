@@ -418,49 +418,52 @@
             margin-top: 5px;
         }
 
+        /* جعل قسم التواصل ملء الشاشة بالكامل ومناسب للموبايل */
         #tab-contact {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            padding: 5rem 1rem 1rem 1rem;
+            padding: 0;
             background-color: #e5ddd5;
             background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
             background-size: 20px 20px;
-            z-index: 50; display: none; flex-direction: column; max-width: 100% !important;
+            z-index: 1050; display: none; flex-direction: column; max-width: 100% !important;
         }
 
         .whatsapp-container {
-            max-width: 750px; width: 100%; height: calc(100vh - 120px);
-            margin: 0 auto; background: #efeae2; border-radius: 12px;
-            display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            border: 1px solid #cbd5e1; overflow: hidden;
+            width: 100vw; height: 100vh;
+            margin: 0; background: #efeae2; border-radius: 0;
+            display: flex; flex-direction: column; box-shadow: none;
+            border: none; overflow: hidden;
         }
 
         .whatsapp-header-bar {
-            background: #007a05; color: white; padding: 12px 20px;
-            font-size: 1.2rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center;
+            background: #007a05; color: white; padding: 10px 15px;
+            font-size: 1.1rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .whatsapp-messages-area {
-            flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
+            flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;
         }
 
         .whatsapp-msg {
-            background: #ffffff; padding: 10px 14px; border-radius: 8px; max-width: 75%; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.1); align-self: flex-start;
+            background: #ffffff; padding: 8px 12px; border-radius: 8px; max-width: 82%; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.1); align-self: flex-start;
         }
         .whatsapp-msg.my-msg { background: #dcf8c6; align-self: flex-end; }
-        .msg-sender { font-size: 0.8rem; font-weight: 800; color: #007a05; margin-bottom: 3px; }
-        .msg-text { font-size: 1rem; color: #111b21; word-break: break-word; }
-        .msg-media { max-width: 100%; max-height: 220px; border-radius: 6px; margin-top: 5px; display: block; object-fit: cover; }
-        .msg-time { font-size: 0.7rem; color: #667781; text-align: left; margin-top: 4px; }
-        .btn-delete-msg { position: absolute; top: 5px; left: 8px; background: transparent; border: none; color: #ef4444; font-size: 0.8rem; cursor: pointer; font-weight: 700; }
+        .msg-sender { font-size: 0.75rem; font-weight: 800; color: #007a05; margin-bottom: 2px; }
+        .msg-text { font-size: 0.95rem; color: #111b21; word-break: break-word; }
+        .msg-media { max-width: 100%; max-height: 200px; border-radius: 6px; margin-top: 4px; display: block; object-fit: cover; }
+        .msg-time { font-size: 0.65rem; color: #667781; text-align: left; margin-top: 3px; }
+        .btn-delete-msg { position: absolute; top: 4px; left: 6px; background: transparent; border: none; color: #ef4444; font-size: 0.75rem; cursor: pointer; font-weight: 700; }
 
+        /* تصغير شريط الكتابة وتكييفه للهاتف */
         .whatsapp-input-bar {
-            background: #f0f2f5; padding: 10px 15px; display: flex; align-items: center; gap: 8px;
+            background: #f0f2f5; padding: 6px 10px; display: flex; align-items: center; gap: 6px;
         }
         .whatsapp-input {
-            flex: 1; padding: 10px 15px; border-radius: 20px; border: 1px solid #cbd5e1; outline: none; font-size: 1rem; background: #ffffff;
+            flex: 1; padding: 8px 12px; border-radius: 20px; border: 1px solid #cbd5e1; outline: none; font-size: 0.9rem; background: #ffffff;
         }
         .whatsapp-btn {
-            background: #007a05; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1rem; font-weight: bold; flex-shrink: 0;
+            background: #007a05; color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; font-weight: bold; flex-shrink: 0;
         }
         .whatsapp-btn:hover { background: #005a04; }
 
@@ -468,16 +471,6 @@
             background-color: var(--neon-green); color: #0f172a; padding: 10px 20px; border: none; border-radius: 8px; font-weight: 900; font-size: 1rem; cursor: pointer; margin-top: 1rem; transition: transform 0.2s;
         }
         .btn-back-home:hover { transform: scale(1.05); }
-
-        .citizens-status-grid { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
-        .citizen-status-card {
-            background: #ffffff; border: 1px solid #cbd5e1; padding: 1.5rem; border-radius: 12px; width: 220px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; gap: 10px;
-        }
-        .citizen-status-avatar { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--neon-green); }
-        .status-indicator-wrapper { display: flex; align-items: center; gap: 6px; font-weight: 700; }
-        .status-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; box-shadow: 0 0 6px rgba(0,0,0,0.2); }
-        .dot-online { background-color: #22c55e; box-shadow: 0 0 8px #22c55e; }
-        .dot-offline { background-color: #ef4444; box-shadow: 0 0 8px #ef4444; }
 
         .form-group { margin-bottom: 1.2rem; text-align: right; }
         .form-group label { display: block; font-weight: 700; margin-bottom: 0.4rem; color: #0f172a; }
@@ -763,10 +756,6 @@
                 <p style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; text-align: center;">تم تصنيع هذا الموقع بواسطة:</p>
                 <p style="font-size: 1.4rem; font-weight: 900; color: var(--header-bg); text-shadow: 0 0 6px rgba(0,255,162,0.3); text-align: center;">محمد وائل دياب</p>
             </div>
-
-            <h2 class="page-title" style="margin-top: 2rem;">حالة اتصال المواطنين</h2>
-            <p style="margin-bottom: 1.5rem; color: #f1f5f9;">متابعة حالة تواجد وحضور مواطني دولة فينا النشطين حالياً:</p>
-            <div id="citizensStatusContainer" class="citizens-status-grid"></div>
             
             <div style="text-align: center; margin-top: 3rem;">
                 <button class="btn-back-home" onclick="playClick(); showTab('home')">العودة للرئيسية</button>
@@ -816,17 +805,23 @@
         <div class="modal-box" style="max-width: 500px; text-align: right;">
             <h3 id="modalItemTitle" style="color: var(--header-bg); font-size: 1.5rem; margin-bottom: 0.5rem;"></h3>
             <p id="modalItemSeller" style="font-size: 0.9rem; font-weight: 700; color: #64748b; margin-bottom: 1rem;"></p>
-            <img id="modalItemImg" src="" alt="صورة السلعة" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; display: none;">
+            <img id="modalItemImg" src="" alt="صورة السلعة" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; display: none;">
             <p id="modalItemDesc" style="font-size: 1rem; color: #1e293b; margin-bottom: 1rem; line-height: 1.6;"></p>
             <p id="modalItemPrice" style="font-size: 1.1rem; font-weight: 900; color: #16a34a; margin-bottom: 1.5rem;"></p>
             
-            <div style="border-top: 1px solid #cbd5e1; padding-top: 1rem;">
-                <h4 style="font-size: 1.1rem; color: var(--header-bg); margin-bottom: 0.5rem;">إرسال عرض أو رسالة للبائع:</h4>
-                <textarea id="buyerOfferText" class="form-control" rows="3" placeholder="اكتب عرضك أو استفسارك هنا للبائع..."></textarea>
+            <div id="offerFormSection" style="border-top: 1px solid #cbd5e1; padding-top: 1rem; display: none;">
+                <h4 style="font-size: 1.1rem; color: var(--header-bg); margin-bottom: 0.5rem;">إرسال عرض للشراء:</h4>
+                <textarea id="buyerOfferText" class="form-control" rows="3" placeholder="اكتب عرضك هنا المقابل لهذه السلعة..."></textarea>
                 <div style="display: flex; gap: 10px; justify-content: center; margin-top: 1rem;">
-                    <button class="btn-action" onclick="sendMarketOffer()">إرسال العرض</button>
-                    <button class="btn-action" style="background: #64748b; color: white;" onclick="closeItemModal()">إغلاق</button>
+                    <button class="btn-action" onclick="sendMarketOffer()">إرسال الطلب والعرض</button>
+                    <button class="btn-action" style="background: #64748b; color: white;" onclick="closeItemModal()">إلغاء</button>
                 </div>
+            </div>
+
+            <div id="ownerDeleteSection" style="border-top: 1px solid #cbd5e1; padding-top: 1rem; text-align: center; display: none;">
+                <p style="margin-bottom: 1rem; font-weight: 700; color: #334155;">أنت صاحب هذه السلعة.</p>
+                <button class="btn-action btn-danger" onclick="deleteCurrentMarketItem()">🗑️ حذف السلعة من السوق</button>
+                <button class="btn-action" style="background: #64748b; color: white; margin-right: 8px;" onclick="closeItemModal()">إغلاق</button>
             </div>
         </div>
     </div>
@@ -980,7 +975,6 @@
                 renderWhatsappMessages();
                 renderLibraryDocs();
                 renderMarketItems();
-                renderCitizensStatus();
                 updateMailBadge();
             }
         });
@@ -1077,12 +1071,8 @@
             }
 
             container.innerHTML = marketItems.map(item => {
-                const canDelete = currentSession && currentSession.name === item.seller;
-                const deleteBtn = canDelete ? `<button class="btn-delete-news" style="top:10px; left:10px;" onclick="event.stopPropagation(); deleteMarketItem(${item.id})">🗑️</button>` : '';
-
                 return `
                     <div class="market-card" onclick="openItemModal(${item.id})">
-                        ${deleteBtn}
                         <div class="market-card-header">
                             <img src="${item.avatar || DEFAULT_AVATAR}" class="market-card-avatar" alt="البائع">
                             <span class="market-seller-name">${escapeHTML(item.seller)}</span>
@@ -1099,14 +1089,6 @@
             }).join('');
         }
 
-        function deleteMarketItem(id) {
-            if (confirm('هل أنت متأكد من حذف هذه السلعة؟')) {
-                playClick();
-                marketItems = marketItems.filter(i => i.id !== id);
-                saveToCloud();
-            }
-        }
-
         function openItemModal(id) {
             playClick();
             selectedItemForOffer = marketItems.find(i => i.id === id);
@@ -1114,6 +1096,7 @@
 
             document.getElementById('modalItemTitle').textContent = selectedItemForOffer.title;
             document.getElementById('modalItemSeller').textContent = 'البائع: ' + selectedItemForOffer.seller;
+            
             const imgElem = document.getElementById('modalItemImg');
             if (selectedItemForOffer.img) {
                 imgElem.src = selectedItemForOffer.img;
@@ -1121,10 +1104,33 @@
             } else {
                 imgElem.style.display = 'none';
             }
+            
             document.getElementById('modalItemDesc').textContent = selectedItemForOffer.desc || 'لا يوجد وصف إضافي.';
             document.getElementById('modalItemPrice').textContent = 'السعر المطلوب: ' + selectedItemForOffer.price;
             document.getElementById('buyerOfferText').value = '';
+
+            const isOwner = currentSession && currentSession.name === selectedItemForOffer.seller;
+            
+            if (isOwner) {
+                document.getElementById('ownerDeleteSection').style.display = 'block';
+                document.getElementById('offerFormSection').style.display = 'none';
+            } else {
+                document.getElementById('ownerDeleteSection').style.display = 'none';
+                document.getElementById('offerFormSection').style.display = 'block';
+            }
+
             document.getElementById('itemModal').style.display = 'flex';
+        }
+
+        function deleteCurrentMarketItem() {
+            if (!selectedItemForOffer) return;
+            if (confirm('هل أنت متأكد من حذف هذه السلعة بشكل نهائي؟')) {
+                playClick();
+                marketItems = marketItems.filter(i => i.id !== selectedItemForOffer.id);
+                saveToCloud();
+                closeItemModal();
+                alert('تم حذف السلعة من السوق بنجاح.');
+            }
         }
 
         function closeItemModal() {
@@ -1136,7 +1142,7 @@
         function sendMarketOffer() {
             if (!currentSession) {
                 playError();
-                alert('يجب تسجيل الدخول لإرسال عرض شراء!');
+                alert('يجب تسجيل الدخول لإرسال طلب شراء وعرض!');
                 showTab('login');
                 closeItemModal();
                 return;
@@ -1144,13 +1150,14 @@
             const text = document.getElementById('buyerOfferText').value.trim();
             if (!text) {
                 playError();
-                alert('يرجى كتابة نص العرض أو الرسالة أولاً.');
+                alert('يرجى كتابة العرض الخاص بك أولاً!');
                 return;
             }
 
             playSuccess();
             marketMails.unshift({
                 id: Date.now(),
+                itemId: selectedItemForOffer.id,
                 seller: selectedItemForOffer.seller,
                 buyer: currentSession.name,
                 itemTitle: selectedItemForOffer.title,
@@ -1159,7 +1166,7 @@
             });
 
             saveToCloud();
-            alert('تم إرسال العرض بنجاح إلى بريد البائع!');
+            alert('تم إرسال طلب الشراء والعرض إلى بريد البائع (' + selectedItemForOffer.seller + ') بنجاح!');
             closeItemModal();
         }
 
@@ -1191,21 +1198,39 @@
             }
 
             container.innerHTML = myMails.map(m => `
-                <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 1rem; border-radius: 8px; position: relative;">
-                    <button class="btn-delete-news" style="top:10px; left:10px;" onclick="deleteMail(${m.id})">🗑️</button>
-                    <h4 style="color: var(--header-bg); font-size: 1.1rem; margin-bottom: 4px;">سلعة: ${escapeHTML(m.itemTitle)}</h4>
-                    <p style="font-size: 0.9rem; font-weight: 700; color: #334155; margin-bottom: 6px;">المشتري/المستفسر: ${escapeHTML(m.buyer)}</p>
-                    <p style="font-size: 1rem; color: #0f172a; margin-bottom: 6px; background: #ffffff; padding: 8px; border-radius: 6px;">${escapeHTML(m.message)}</p>
-                    <span style="font-size: 0.75rem; color: #64748b;">📅 ${escapeHTML(m.time)}</span>
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--header-bg); font-size: 1.1rem; margin-bottom: 4px;">السلعة: ${escapeHTML(m.itemTitle)}</h4>
+                    <p style="font-size: 0.9rem; font-weight: 700; color: #334155; margin-bottom: 6px;">المشتري: ${escapeHTML(m.buyer)}</p>
+                    <p style="font-size: 1rem; color: #0f172a; margin-bottom: 8px; background: #ffffff; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0;">العرض: ${escapeHTML(m.message)}</p>
+                    <span style="font-size: 0.75rem; color: #64748b; display: block; margin-bottom: 10px;">📅 ${escapeHTML(m.time)}</span>
+                    <div style="display: flex; gap: 8px; justify-content: flex-end;">
+                        <button class="btn-action" style="padding: 6px 14px; font-size: 0.85rem;" onclick="acceptOffer(${m.id}, ${m.itemId})">✅ قبول العرض (بيع وتخلص من السلعة)</button>
+                        <button class="btn-action btn-danger" style="padding: 6px 14px; font-size: 0.85rem;" onclick="rejectOffer(${m.id})">❌ رفض العرض</button>
+                    </div>
                 </div>
             `).join('');
         }
 
-        function deleteMail(id) {
-            playClick();
-            marketMails = marketMails.filter(m => m.id !== id);
-            saveToCloud();
-            renderMailMessages();
+        function acceptOffer(mailId, itemId) {
+            if (confirm('عند قبول العرض ستتم عملية البيع وتختفي السلعة من السوق نهائياً، هل أنت موافق؟')) {
+                playSuccess();
+                // حذف السلعة من السوق
+                marketItems = marketItems.filter(i => i.id !== itemId);
+                // حذف جميع الرسائل الخاصة بهذه السلعة
+                marketMails = marketMails.filter(m => m.itemId !== itemId);
+                saveToCloud();
+                renderMailMessages();
+                alert('تمت الموافقة على العرض! وحُذفت السلعة من السوق.');
+            }
+        }
+
+        function rejectOffer(mailId) {
+            if (confirm('هل أنت متأكد من رفض هذا العرض؟')) {
+                playClick();
+                marketMails = marketMails.filter(m => m.id !== mailId);
+                saveToCloud();
+                renderMailMessages();
+            }
         }
 
         function updateMailBadge() {
@@ -1381,7 +1406,6 @@
                     
                     playSuccess();
                     renderSessionUI();
-                    renderCitizensStatus();
                     alert('تم تغيير صورة البروفايل بنجاح!');
                 };
                 img.src = e.target.result;
@@ -1406,7 +1430,6 @@
                     }
                 }
             });
-            if (tabName === 'other') renderCitizensStatus();
             if (tabName === 'contact') renderWhatsappMessages();
             if (tabName === 'library') renderLibraryDocs();
             if (tabName === 'market') renderMarketItems();
@@ -1435,7 +1458,6 @@
                     localStorage.setItem('fina_user_session', JSON.stringify(currentSession));
                     renderSessionUI();
                     renderNewsUI();
-                    renderCitizensStatus();
                     updateMailBadge();
                 } else {
                     playError();
@@ -1473,30 +1495,6 @@
             }
         }
 
-        function renderCitizensStatus() {
-            const container = document.getElementById('citizensStatusContainer');
-            if (!container) return;
-
-            const citizensNames = Object.keys(citizensDb);
-            container.innerHTML = citizensNames.map(name => {
-                const isOnline = currentSession && currentSession.name === name;
-                const avatar = localStorage.getItem('fina_avatar_' + name) || DEFAULT_AVATAR;
-                const dotClass = isOnline ? 'dot-online' : 'dot-offline';
-                const statusText = isOnline ? 'متصل الآن' : 'غير متصل';
-
-                return `
-                    <div class="citizen-status-card">
-                        <img src="${avatar}" alt="${name}" class="citizen-status-avatar">
-                        <h4 style="font-size: 1.2rem; color: var(--text-dark);">${name}</h4>
-                        <div class="status-indicator-wrapper">
-                            <span class="status-dot ${dotClass}"></span>
-                            <span style="color: ${isOnline ? '#22c55e' : '#ef4444'};">${statusText}</span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
         function promptLogout() { 
             const modal = document.getElementById('logoutModal');
             if (modal) modal.style.display = 'flex'; 
@@ -1514,7 +1512,6 @@
             closeLogoutModal();
             renderSessionUI();
             renderNewsUI();
-            renderCitizensStatus();
             updateMailBadge();
             showTab('home');
         }
