@@ -239,136 +239,11 @@
 
         #tab-market {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            padding: 6rem 2rem 2rem 2rem;
+            padding: 8rem 2rem 2rem 2rem;
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://i.ibb.co/Y7scHND2/Empty-food-market-with-goods-20261021020148.jpg') no-repeat center center;
             background-size: cover; z-index: 50; overflow-y: auto; color: #ffffff; max-width: 100% !important; text-align: center;
         }
-
-        .market-top-bar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .market-mail-icon-btn {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid var(--neon-green);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
-        }
-
-        .market-mail-icon-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .market-mail-icon-btn img {
-            width: 30px;
-            height: 30px;
-            object-fit: contain;
-        }
-
-        .mail-badge {
-            position: absolute;
-            top: -5px; right: -5px;
-            background: #ef4444; color: white;
-            font-size: 0.75rem; font-weight: 800;
-            width: 20px; height: 20px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-        }
-
-        .market-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: right;
-        }
-
-        .market-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            padding: 1.2rem;
-            color: #0f172a;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            position: relative;
-        }
-
-        .market-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 22px rgba(0,255,162,0.4);
-        }
-
-        .market-card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .market-card-avatar {
-            width: 42px; height: 42px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--header-bg);
-        }
-
-        .market-seller-name {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: #0f172a;
-        }
-
-        .market-item-img {
-            width: 100%;
-            height: 170px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #cbd5e1;
-        }
-
-        .market-item-title {
-            font-size: 1.25rem;
-            font-weight: 900;
-            color: var(--header-bg);
-        }
-
-        .market-item-desc {
-            font-size: 0.95rem;
-            color: #334155;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .market-item-price {
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: #16a34a;
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        #tab-market p { color: #f1f5f9; font-size: 1.2rem; }
 
         #tab-library {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -567,7 +442,7 @@
                     <div class="interactive-paragraph">
                         <p onmouseenter="playHoverSound()">تتميز منطقة محمد وائل دياب بأنها التي أحدثت نهضة المكاتب منذ عصر الدولة العليا ودولة مملكة الطبيعة.</p>
                         <p onmouseenter="playHoverSound()">ومع بداية منتصف عصر الدولة الوسطى انطلقت النهضة العمرانية، ولكن الرياح أتلفت العديد من الأشياء بداخلها.</p>
-                        <p onmouseenter="playHoverSound()">تعتبر هذه المنطقة حالياً هي الأقل زراعية في هذه الفترة بسبب عدم إنبات النباتات بها حتى الآن.</p>
+                        <p onmouseenter="playHoverSound()">تعتبر هذه المنطقة حالياً هي الأقل زراعية في هذه الفترة بسبب عدم إنبات النباتات بها حتى .</p>
                     </div>
                 </div>
                 <img src="https://i.ibb.co/DPt0jdPT/New-Project-5.png" alt="صورة المكتب" class="region-img-side">
@@ -589,7 +464,7 @@
                 <div class="region-content">
                     <h2 class="region-title">منطقة محمد نصر</h2>
                     <div class="interactive-paragraph">
-                        <p onmouseenter="playHoverSound()">لم تتميز بأشياء كثيرة سوى زراعة دوار الشمس.</p>
+                        <p onmouseenter="playHoverSound()">لم تتميز بأشياء كثيرة سوى زراعة دوار الشمس .</p>
                         <p onmouseenter="playHoverSound()">ولكن مع الأسف لم تكن المنطقة نفسها جيدة من حيث التصميم ولا المكتب المخصص لها.</p>
                     </div>
                 </div>
@@ -606,7 +481,7 @@
                 <button class="btn-back-home" onclick="playClick(); showTab('home')">العودة للرئيسية</button>
             </div>
 
-            <div id="addNewsBox" style="display: none; background: rgba(248, 250, 252, 0.95); padding: 1.5rem; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; text-align: right;">
+            <div id="addNewsBox" style="display: none; background: rgba(248, 250, 252, 0.95); padding: 1.5rem; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                 <h3 style="margin-bottom: 1rem; color: var(--neon-green);">نشر خبر جديد</h3>
                 <div class="form-group">
                     <label>عنوان الخبر:</label>
@@ -618,7 +493,7 @@
                 </div>
                 <div class="form-group">
                     <label>صورة الخبر (اختياري):</label>
-                    <input type="file" id="newsImgInput" class="form-control" accept="image/*" onchange="handleNewsFileSelect(event)">
+                    <input type="file" id="newsImgInput" class="form-control" accept="image/*" onchange="handleFileSelect(event, 'news')">
                 </div>
                 <button class="btn-action" onclick="saveNews()">نشر الخبر الآن</button>
             </div>
@@ -630,7 +505,7 @@
         <div id="tab-login" class="tab-content centered-tab" style="display: none;">
             <div id="loginFormSection">
                 <h2 class="page-title">تسجيل الدخول والبيانات الرسمية</h2>
-                <form onsubmit="handleLogin(event)" style="max-width: 450px; margin: 0 auto; text-align: right;">
+                <form onsubmit="handleLogin(event)" style="max-width: 450px; margin: 0 auto;">
                     <div class="form-group">
                         <label>اختر اسم المواطن:</label>
                         <select id="citizenSelect" class="form-control" required>
@@ -665,8 +540,8 @@
                         <input type="file" id="changeAvatarInput" accept="image/*" style="display: none;" onchange="updateProfileAvatar(event)">
                     </div>
 
-                    <h3 id="profileNameDisplay" style="font-size: 1.8rem; margin-bottom: 0.2rem; color: #ffffff;"></h3>
-                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem; color: #f1f5f9;">رقم جواز السفر: <b id="profilePassportDisplay" style="color: var(--neon-green);"></b></p>
+                    <h3 id="profileNameDisplay" style="font-size: 1.8rem; margin-bottom: 0.2rem;"></h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">رقم جواز السفر: <b id="profilePassportDisplay" style="color: var(--neon-green);"></b></p>
                     <button class="btn-action btn-danger" onclick="playClick(); promptLogout()" style="max-width: 200px;">تسجيل الخروج</button>
                 </div>
             </div>
@@ -674,43 +549,9 @@
 
         <!-- Tab: Market -->
         <div id="tab-market" class="tab-content" style="display: none;">
-            <h2 class="page-title" style="color: var(--neon-green); text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem;">سوق دولة فينا</h2>
-            <p style="text-align: center; margin-bottom: 1.5rem; color: #f1f5f9;">منصة التجارة الرسمية لعرض المحاصيل والسلع والمتبادلات التجارية.</p>
-            
-            <div class="market-top-bar">
-                <button class="btn-action" onclick="playClick(); toggleMarketForm()">+ إضافة سلعة جديدة للسوق</button>
-                <div class="market-mail-icon-btn" onclick="playClick(); openMailModal()" title="بريد السوق والعروض الواردة">
-                    <img src="https://i.postimg.cc/RZxQNQ0z/An-icon-image-of-mail-20261021034132.jpg" alt="بريد السوق">
-                    <span id="mailBadge" class="mail-badge" style="display: none;">0</span>
-                </div>
-            </div>
-
-            <div id="addMarketBox" style="display: none; background: rgba(255, 255, 255, 0.95); padding: 1.5rem; border-radius: 12px; border: 2px solid var(--neon-green); max-width: 550px; margin: 0 auto 2rem auto; text-align: right; color: #0f172a;">
-                <h3 style="margin-bottom: 1rem; color: var(--header-bg); text-align: center;">إضافة سلعة للبيع</h3>
-                <div class="form-group">
-                    <label>اسم السلعة:</label>
-                    <input type="text" id="marketItemTitle" class="form-control" placeholder="مثلاً: محصول طماطم خصبة">
-                </div>
-                <div class="form-group">
-                    <label>وصف السلعة:</label>
-                    <textarea id="marketItemDesc" class="form-control" rows="3" placeholder="تفاصيل ومميزات السلعة..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>السعر (العملة - القيمة التجارية):</label>
-                    <input type="text" id="marketItemPrice" class="form-control" placeholder="مثلاً: 150 عملة فينا">
-                </div>
-                <div class="form-group">
-                    <label>صورة السلعة:</label>
-                    <input type="file" id="marketItemImgInput" class="form-control" accept="image/*" onchange="handleMarketFileSelect(event)">
-                </div>
-                <div style="text-align: center;">
-                    <button class="btn-action" onclick="saveMarketItem()">نشر السلعة في السوق</button>
-                </div>
-            </div>
-
-            <div id="marketItemsGrid" class="market-grid"></div>
-
-            <div style="text-align: center; margin-top: 3rem;">
+            <h2 class="page-title" style="color: var(--neon-green); text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">سوق دولة فينا</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">قريباً.. عرض المنتجات والمحاصيل الزراعية بأحمد وائل ومحمد نصر.</p>
+            <div style="text-align: center;">
                 <button class="btn-back-home" onclick="playClick(); showTab('home')">العودة للرئيسية</button>
             </div>
         </div>
@@ -724,7 +565,7 @@
                 <button class="btn-action" onclick="playClick(); toggleDocForm()">+ إضافة مستند جديد</button>
             </div>
 
-            <div id="addDocBox" style="display: none; background: rgba(255, 255, 255, 0.95); padding: 1.5rem; border-radius: 12px; border: 2px solid var(--neon-green); max-width: 500px; margin: 0 auto 2rem auto; text-align: right; color: #0f172a;">
+            <div id="addDocBox" style="display: none; background: rgba(255, 255, 255, 0.95); padding: 1.5rem; border-radius: 12px; border: 2px solid var(--neon-green); max-width: 500px; margin: 0 auto 2rem auto; text-align: right;">
                 <h3 style="margin-bottom: 1rem; color: var(--header-bg); text-align: center;">رفع مستند للمكتبة</h3>
                 <div class="form-group">
                     <label>عنوان المستند (إجباري):</label>
@@ -750,10 +591,17 @@
             </div>
         </div>
 
-        <!-- Tab: Other -->
+        <!-- Tab: Other (تم تحديث هذا القسم ليحتوي على معلومات صنع الموقع بواسطة محمد وائل دياب) -->
         <div id="tab-other" class="tab-content centered-tab" style="display: none;">
-            <h2 class="page-title">حالة اتصال المواطنين</h2>
-            <p style="margin-bottom: 1.5rem; color: #f1f5f9;">متابعة حالة تواجد وحضور مواطني دولة فينا النشطين حالياً:</p>
+            <h2 class="page-title">معلومات دولة فينا</h2>
+            <div style="background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 12px; border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                <h3 style="color: var(--header-bg); font-size: 1.5rem; margin-bottom: 1rem;">معلومات المطور</h3>
+                <p style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">تم تصنيع وبرمجة هذا الموقع بواسطة:</p>
+                <p style="font-size: 1.4rem; font-weight: 900; color: var(--neon-green); text-shadow: 0 0 6px rgba(0,255,162,0.3);">محمد وائل دياب</p>
+            </div>
+
+            <h2 class="page-title" style="margin-top: 2rem;">حالة اتصال المواطنين</h2>
+            <p style="margin-bottom: 1.5rem; color: #64748b;">متابعة حالة تواجد وحضور مواطني دولة فينا النشطين حالياً:</p>
             <div id="citizensStatusContainer" class="citizens-status-grid"></div>
         </div>
 
@@ -791,25 +639,6 @@
             <div style="display: flex; gap: 10px; justify-content: center;">
                 <button class="btn-action btn-danger" onclick="confirmLogout()">نعم، خروج</button>
                 <button class="btn-action" style="background: #64748b; color: white;" onclick="playClick(); closeLogoutModal()">إلغاء</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Market Item Details & Buy Offer -->
-    <div id="marketDetailModal" class="modal-overlay">
-        <div class="modal-box" style="max-width: 550px; text-align: right;">
-            <div id="modalItemContent"></div>
-            <div id="modalActionArea" style="margin-top: 1.5rem;"></div>
-        </div>
-    </div>
-
-    <!-- Modal: Market Mail / Offers -->
-    <div id="marketMailModal" class="modal-overlay">
-        <div class="modal-box" style="max-width: 600px; text-align: right; max-height: 80vh; overflow-y: auto;">
-            <h3 style="color: var(--header-bg); margin-bottom: 1rem; text-align: center;">📬 بريد السوق وعروض الشراء</h3>
-            <div id="marketMailList" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem;"></div>
-            <div style="text-align: center;">
-                <button class="btn-action" style="background: #64748b; color: white;" onclick="closeMailModal()">إغلاق</button>
             </div>
         </div>
     </div>
@@ -914,12 +743,7 @@
         let newsList = JSON.parse(localStorage.getItem('fina_news_db')) || [];
         let whatsappMessages = JSON.parse(localStorage.getItem('fina_whatsapp_db')) || [];
         let libraryDocs = JSON.parse(localStorage.getItem('fina_library_db')) || [];
-        let marketItems = JSON.parse(localStorage.getItem('fina_market_db')) || [];
-        let marketMails = JSON.parse(localStorage.getItem('fina_market_mails_db')) || [];
-        
         let tempNewsImgData = null;
-        let tempMarketImgData = null;
-        let selectedMarketItem = null;
 
         let tempDocFileData = null;
         let tempDocFileType = null;
@@ -935,339 +759,40 @@
             renderCitizensStatus();
             renderWhatsappMessages();
             renderLibraryDocs();
-            renderMarketItems();
-            updateMailBadge();
         });
 
-        function handleNewsFileSelect(event) {
+        function handleFileSelect(event, targetType) {
             const file = event.target.files[0];
             if (!file) return;
+
             const reader = new FileReader();
             reader.onload = function(e) {
-                tempNewsImgData = e.target.result;
-                playClick();
-            };
-            reader.readAsDataURL(file);
-        }
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const maxDim = 500;
 
-        function handleMarketFileSelect(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                tempMarketImgData = e.target.result;
-                playClick();
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function toggleMarketForm() {
-            if (!currentSession) {
-                playError();
-                alert('يجب تسجيل الدخول بحسابك أولاً لإضافة سلعة للسوق!');
-                showTab('login');
-                return;
-            }
-            const box = document.getElementById('addMarketBox');
-            if (box) {
-                box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'block' : 'none';
-            }
-        }
-
-        function saveMarketItem() {
-            if (!currentSession) return;
-
-            const titleInput = document.getElementById('marketItemTitle');
-            const descInput = document.getElementById('marketItemDesc');
-            const priceInput = document.getElementById('marketItemPrice');
-
-            const title = titleInput ? titleInput.value.trim() : '';
-            const desc = descInput ? descInput.value.trim() : '';
-            const price = priceInput ? priceInput.value.trim() : '';
-
-            if (!title || !desc || !price) {
-                playError();
-                alert('يرجى ملء جميع بيانات السلعة (الاسم، الوصف، والسعر)!');
-                return;
-            }
-
-            if (!tempMarketImgData) {
-                playError();
-                alert('يرجى اختيار صورة للسلعة!');
-                return;
-            }
-
-            playSuccess();
-            marketItems.unshift({
-                id: Date.now(),
-                sellerName: currentSession.name,
-                sellerAvatar: currentSession.avatar,
-                title: title,
-                desc: desc,
-                price: price,
-                img: tempMarketImgData
-            });
-
-            localStorage.setItem('fina_market_db', JSON.stringify(marketItems));
-            renderMarketItems();
-
-            titleInput.value = '';
-            descInput.value = '';
-            priceInput.value = '';
-            document.getElementById('marketItemImgInput').value = '';
-            tempMarketImgData = null;
-            document.getElementById('addMarketBox').style.display = 'none';
-
-            alert('تم نشر السلعة في السوق بنجاح!');
-        }
-
-        function deleteMarketItem(itemId) {
-            if (confirm('هل أنت متأكد من حذف هذه السلعة من السوق؟')) {
-                playClick();
-                marketItems = marketItems.filter(i => i.id !== itemId);
-                localStorage.setItem('fina_market_db', JSON.stringify(marketItems));
-                renderMarketItems();
-                closeMarketModal();
-            }
-        }
-
-        function renderMarketItems() {
-            const container = document.getElementById('marketItemsGrid');
-            if (!container) return;
-
-            if (marketItems.length === 0) {
-                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #f1f5f9; padding: 1rem 0;">لا توجد سلع معروضة في السوق حالياً.</p>';
-                return;
-            }
-
-            container.innerHTML = marketItems.map(item => {
-                return `
-                    <div class="market-card" onclick="openMarketDetail(${item.id})">
-                        <div class="market-card-header">
-                            <img src="${item.sellerAvatar}" alt="${escapeHTML(item.sellerName)}" class="market-card-avatar">
-                            <span class="market-seller-name">${escapeHTML(item.sellerName)}</span>
-                        </div>
-                        <img src="${item.img}" alt="${escapeHTML(item.title)}" class="market-item-img">
-                        <h4 class="market-item-title">${escapeHTML(item.title)}</h4>
-                        <p class="market-item-desc">${escapeHTML(item.desc)}</p>
-                        <div class="market-item-price">
-                            <span>السعر:</span>
-                            <b style="color: var(--neon-green);">${escapeHTML(item.price)}</b>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function openMarketDetail(itemId) {
-            playClick();
-            selectedMarketItem = marketItems.find(i => i.id === itemId);
-            if (!selectedMarketItem) return;
-
-            const modalContent = document.getElementById('modalItemContent');
-            const modalActionArea = document.getElementById('modalActionArea');
-
-            modalContent.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;">
-                    <img src="${selectedMarketItem.sellerAvatar}" alt="${escapeHTML(selectedMarketItem.sellerName)}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--neon-green);">
-                    <div>
-                        <h4 style="font-size: 1.1rem; color: var(--header-bg);">${escapeHTML(selectedMarketItem.sellerName)}</h4>
-                        <span style="font-size: 0.8rem; color: #64748b;">بائع معتمد في دولة فينا</span>
-                    </div>
-                </div>
-                <img src="${selectedMarketItem.img}" alt="${escapeHTML(selectedMarketItem.title)}" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                <h3 style="font-size: 1.6rem; color: var(--neon-green); margin-bottom: 0.5rem;">${escapeHTML(selectedMarketItem.title)}</h3>
-                <p style="font-size: 1rem; color: #334155; line-height: 1.6; margin-bottom: 1rem;">${escapeHTML(selectedMarketItem.desc)}</p>
-                <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1.1rem; font-weight: 800; color: #16a34a; text-align: center;">
-                    القيمة التجارية المطلوبة: ${escapeHTML(selectedMarketItem.price)}
-                </div>
-            `;
-
-            const isOwner = currentSession && currentSession.name === selectedMarketItem.sellerName;
-
-            if (isOwner) {
-                modalActionArea.innerHTML = `
-                    <div style="text-align: center; display: flex; gap: 10px; justify-content: center;">
-                        <button class="btn-action btn-danger" onclick="deleteMarketItem(${selectedMarketItem.id})">🗑️ حذف السلعة</button>
-                        <button class="btn-action" style="background: #64748b; color: white;" onclick="closeMarketModal()">إغلاق</button>
-                    </div>
-                `;
-            } else {
-                modalActionArea.innerHTML = `
-                    <div class="form-group" style="margin-top: 1rem;">
-                        <label style="font-weight: 800; color: #0f172a;">كتابة العرض للمشتري:</label>
-                        <textarea id="buyerOfferText" class="form-control" rows="2" placeholder="اكتب عرضك أو ملاحظاتك للبائع هنا..."></textarea>
-                    </div>
-                    <div style="text-align: center; display: flex; gap: 10px; justify-content: center;">
-                        <button class="btn-action" onclick="submitBuyRequest()">طلب شراء (تماماً)</button>
-                        <button class="btn-action" style="background: #64748b; color: white;" onclick="closeMarketModal()">إغلاق</button>
-                    </div>
-                `;
-            }
-
-            document.getElementById('marketDetailModal').style.display = 'flex';
-        }
-
-        function closeMarketModal() {
-            playClick();
-            document.getElementById('marketDetailModal').style.display = 'none';
-            selectedMarketItem = null;
-        }
-
-        function submitBuyRequest() {
-            if (!currentSession) {
-                playError();
-                alert('يجب تسجيل الدخول لإتمام طلب الشراء!');
-                closeMarketModal();
-                showTab('login');
-                return;
-            }
-
-            if (!selectedMarketItem) return;
-
-            const offerInput = document.getElementById('buyerOfferText');
-            const offerText = offerInput ? offerInput.value.trim() : '';
-
-            if (!offerText) {
-                playError();
-                alert('يرجى كتابة تفاصيل العرض أولاً!');
-                return;
-            }
-
-            playSuccess();
-
-            // إرسال العرض إلى بريد البائع
-            marketMails.unshift({
-                id: Date.now(),
-                type: 'offer',
-                sellerName: selectedMarketItem.sellerName,
-                buyerName: currentSession.name,
-                itemTitle: selectedMarketItem.title,
-                itemId: selectedMarketItem.id,
-                offerText: offerText,
-                status: 'pending' // pending, accepted, rejected
-            });
-
-            localStorage.setItem('fina_market_mails_db', JSON.stringify(marketMails));
-            updateMailBadge();
-
-            alert(`تم إرسال طلب الشراء (تماماً) بنجاح إلى البائع (${selectedMarketItem.sellerName})!`);
-            closeMarketModal();
-        }
-
-        function openMailModal() {
-            if (!currentSession) {
-                playError();
-                alert('يرجى تسجيل الدخول لعرض البريد!');
-                showTab('login');
-                return;
-            }
-            renderMailList();
-            document.getElementById('marketMailModal').style.display = 'flex';
-        }
-
-        function closeMailModal() {
-            playClick();
-            document.getElementById('marketMailModal').style.display = 'none';
-        }
-
-        function renderMailList() {
-            const container = document.getElementById('marketMailList');
-            if (!container || !currentSession) return;
-
-            // فلترة الرسائل الخاصة بالمستخدم الحالي (سواء كان بائع يتلقى عروض أو مشترٍ يتلقى قبولا/رفضا)
-            const myMails = marketMails.filter(m => m.sellerName === currentSession.name || m.buyerName === currentSession.name);
-
-            if (myMails.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #64748b; padding: 1rem 0;">لا توجد رسائل أو عروض في بريدك حالياً.</p>';
-                return;
-            }
-
-            container.innerHTML = myMails.map(mail => {
-                if (mail.type === 'offer' && mail.sellerName === currentSession.name) {
-                    // رسالة عرض شراء للبائع
-                    if (mail.status === 'pending') {
-                        return `
-                            <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 1rem; border-radius: 8px; text-align: right;">
-                                <h4 style="color: var(--header-bg); font-size: 1.1rem; margin-bottom: 4px;">🛒 عرض شراء جديد على سلعتك: "${escapeHTML(mail.itemTitle)}"</h4>
-                                <p style="font-size: 0.950rem; color: #334155; margin-bottom: 6px;"><b>المشتري:</b> ${escapeHTML(mail.buyerName)}</p>
-                                <p style="font-size: 0.950rem; color: #1e293b; margin-bottom: 10px; background: #ffffff; padding: 6px; border-radius: 6px;"><b>نص العرض:</b> ${escapeHTML(mail.offerText)}</p>
-                                <div style="display: flex; gap: 10px; justify-content: flex-start;">
-                                    <button class="btn-action" style="padding: 6px 14px; font-size: 0.9rem; background: #16a34a;" onclick="respondMail(${mail.id}, 'accept')">✅ موافقة وإتمام</button>
-                                    <button class="btn-action btn-danger" style="padding: 6px 14px; font-size: 0.9rem;" onclick="respondMail(${mail.id}, 'reject')">❌ رفض</button>
-                                </div>
-                            </div>
-                        `;
-                    } else {
-                        const statusStr = mail.status === 'accepted' ? '<span style="color: #16a34a; font-weight: 800;">تمت الموافقة على هذا العرض</span>' : '<span style="color: #ef4444; font-weight: 800;">تم رفض هذا العرض</span>';
-                        return `
-                            <div style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 1rem; border-radius: 8px; text-align: right; opacity: 0.8;">
-                                <h4 style="color: #64748b; font-size: 1.1rem; margin-bottom: 4px;">🛒 عرض شراء لسلعة: "${escapeHTML(mail.itemTitle)}"</h4>
-                                <p style="font-size: 0.9rem; color: #475569;">المشتري: ${escapeHTML(mail.buyerName)} | الحالة: ${statusStr}</p>
-                            </div>
-                        `;
-                    }
-                } else if (mail.buyerName === currentSession.name) {
-                    // رسالة للمشتري بخصوص عرضه
-                    let statusMsg = '';
-                    if (mail.status === 'accepted') {
-                        statusMsg = '<b style="color: #16a34a;">🎉 تهانينا! وافق البائع على عرضك وتم قبول صفقة الشراء بنجاح.</b>';
-                    } else if (mail.status === 'rejected') {
-                        statusMsg = '<b style="color: #ef4444;">❌ عذراً، تم رفض عرض الشراء من قبل البائع.</b>';
-                    } else {
-                        statusMsg = '<b style="color: #d97706;">⏳ عرضك قيد الانتظار ومراجعة البائع...</b>';
+                    if (width > height && width > maxDim) {
+                        height *= maxDim / width;
+                        width = maxDim;
+                    } else if (height > maxDim) {
+                        width *= maxDim / height;
+                        height = maxDim;
                     }
 
-                    return `
-                        <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 1rem; border-radius: 8px; text-align: right;">
-                            <h4 style="color: var(--header-bg); font-size: 1.05rem; margin-bottom: 4px;">📦 حالة عرضك على السلعة: "${escapeHTML(mail.itemTitle)}"</h4>
-                            <p style="font-size: 0.95rem; color: #334155; margin-bottom: 6px;">عرضك: "${escapeHTML(mail.offerText)}"</p>
-                            <p style="font-size: 0.95rem;">${statusMsg}</p>
-                        </div>
-                    `;
-                }
-                return '';
-            }).join('');
-        }
-
-        function respondMail(mailId, action) {
-            playClick();
-            const mail = marketMails.find(m => m.id === mailId);
-            if (!mail) return;
-
-            if (action === 'accept') {
-                mail.status = 'accepted';
-                // حذف السلعة من السوق نهائياً
-                marketItems = marketItems.filter(i => i.id !== mail.itemId);
-                localStorage.setItem('fina_market_db', JSON.stringify(marketItems));
-                renderMarketItems();
-                alert('تمت الموافقة على العرض! تمت إزالة السلعة من السوق وإرسال إشعار للمشتري في بريده.');
-            } else {
-                mail.status = 'rejected';
-                alert('تم رفض العرض.');
-            }
-
-            localStorage.setItem('fina_market_mails_db', JSON.stringify(marketMails));
-            renderMailList();
-            updateMailBadge();
-        }
-
-        function updateMailBadge() {
-            const badge = document.getElementById('mailBadge');
-            if (!badge || !currentSession) {
-                if (badge) badge.style.display = 'none';
-                return;
-            }
-
-            // حساب عدد العروض المعلقة التي تخص المستخدم كبائع
-            const pendingCount = marketMails.filter(m => m.sellerName === currentSession.name && m.status === 'pending').length;
-            
-            if (pendingCount > 0) {
-                badge.textContent = pendingCount;
-                badge.style.display = 'flex';
-            } else {
-                badge.style.display = 'none';
-            }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    tempNewsImgData = canvas.toDataURL('image/jpeg', 0.8);
+                    playClick();
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
         }
 
         function toggleDocForm() {
@@ -1310,6 +835,7 @@
         function handleDocCoverSelect(event) {
             const file = event.target.files[0];
             if (!file) return;
+
             const reader = new FileReader();
             reader.onload = function(e) {
                 tempDocCoverData = e.target.result;
@@ -1437,7 +963,6 @@
                     playSuccess();
                     renderSessionUI();
                     renderCitizensStatus();
-                    renderMarketItems();
                     alert('تم تغيير صورة البروفايل بنجاح!');
                 };
                 img.src = e.target.result;
@@ -1471,10 +996,6 @@
             if (tabName === 'library') {
                 renderLibraryDocs();
             }
-            if (tabName === 'market') {
-                renderMarketItems();
-                updateMailBadge();
-            }
             window.scrollTo(0, 0);
         }
 
@@ -1501,8 +1022,6 @@
                     renderSessionUI();
                     renderNewsUI();
                     renderCitizensStatus();
-                    renderMarketItems();
-                    updateMailBadge();
                 } else {
                     playError();
                     alert('خطأ في البيانات! الكود أو رقم جواز السفر غير صحيح.');
@@ -1579,8 +1098,6 @@
             renderSessionUI();
             renderNewsUI();
             renderCitizensStatus();
-            renderMarketItems();
-            updateMailBadge();
             showTab('home');
         }
 
