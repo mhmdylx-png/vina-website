@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دولة فينا - البوابة الرسمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- استيراد مكتبة فايربيس السحابية -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
     <style>
         :root {
             --neon-green: #00ffa2;
@@ -838,9 +843,15 @@
     </div>
 
     <script>
-        // إعدادات JSONBin المباشرة بمفاتيحك الخاصة
-        const JSONBIN_BIN_ID = "6ad8e040ffd5d160537ff750";
-        const JSONBIN_MASTER_KEY = "$2a$10$P/2z/U0R9WyoTr2m.ELvFOkLLodClvA0VIsgdRXvhbXuLDVoic926";
+        // إعداد وتوصيل رابط Firebase Realtime Database
+        const firebaseConfig = {
+            databaseURL: "https://vina-7ec23-default-rtdb.firebaseio.com/"
+        };
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const dbRef = firebase.database().ref('fina_state');
 
         let audioCtx = null;
 
@@ -955,62 +966,38 @@
         let audioChunks = [];
         let isRecording = false;
 
-        // دالة جلب البيانات من JSONBin السحابي
-        async function fetchFromCloud() {
-            try {
-                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
-                    headers: {
-                        'X-Master-Key': JSONBIN_MASTER_KEY
-                    }
-                });
-                if (response.ok) {
-                    const result = await response.json();
-                    if (result && result.record) {
-                        newsList = result.record.news || [];
-                        whatsappMessages = result.record.whatsapp || [];
-                        libraryDocs = result.record.library || [];
-                        marketItems = result.record.market || [];
-                        marketMails = result.record.mails || [];
+        // الاستماع للتغييرات والمزامنة التلقائية اللحظية من Firebase
+        dbRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                newsList = data.news || [];
+                whatsappMessages = data.whatsapp || [];
+                libraryDocs = data.library || [];
+                marketItems = data.market || [];
+                marketMails = data.mails || [];
 
-                        renderNewsUI();
-                        renderWhatsappMessages();
-                        renderLibraryDocs();
-                        renderMarketItems();
-                        renderCitizensStatus();
-                        updateMailBadge();
-                    }
-                }
-            } catch (err) {
-                console.error("خطأ في جلب البيانات:", err);
+                renderNewsUI();
+                renderWhatsappMessages();
+                renderLibraryDocs();
+                renderMarketItems();
+                renderCitizensStatus();
+                updateMailBadge();
             }
-        }
+        });
 
-        // دالة حفظ البيانات إلى JSONBin السحابي
-        async function saveToCloud() {
-            try {
-                await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Master-Key': JSONBIN_MASTER_KEY
-                    },
-                    body: JSON.stringify({
-                        news: newsList,
-                        whatsapp: whatsappMessages,
-                        library: libraryDocs,
-                        market: marketItems,
-                        mails: marketMails
-                    })
-                });
-            } catch (err) {
-                console.error("خطأ في الحفظ السحابي:", err);
-            }
+        // دالة رفع البيانات المحدثة لقواعد Firebase السحابية
+        function saveToCloud() {
+            dbRef.set({
+                news: newsList,
+                whatsapp: whatsappMessages,
+                library: libraryDocs,
+                market: marketItems,
+                mails: marketMails
+            });
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             renderSessionUI();
-            fetchFromCloud();
-            setInterval(fetchFromCloud, 5000); // مزامنة تلقائية كل 5 ثوانٍ
         });
 
         function handleNewsFileSelect(event) {
@@ -1070,7 +1057,6 @@
             });
 
             saveToCloud();
-            renderMarketItems();
 
             document.getElementById('marketItemTitle').value = '';
             document.getElementById('marketItemDesc').value = '';
@@ -1118,7 +1104,6 @@
                 playClick();
                 marketItems = marketItems.filter(i => i.id !== id);
                 saveToCloud();
-                renderMarketItems();
             }
         }
 
@@ -1174,7 +1159,6 @@
             });
 
             saveToCloud();
-            updateMailBadge();
             alert('تم إرسال العرض بنجاح إلى بريد البائع!');
             closeItemModal();
         }
@@ -1222,7 +1206,6 @@
             marketMails = marketMails.filter(m => m.id !== id);
             saveToCloud();
             renderMailMessages();
-            updateMailBadge();
         }
 
         function updateMailBadge() {
@@ -1313,7 +1296,6 @@
             });
 
             saveToCloud();
-            renderLibraryDocs();
 
             titleInput.value = '';
             document.getElementById('docFileInput').value = '';
@@ -1333,7 +1315,6 @@
                 playClick();
                 libraryDocs = libraryDocs.filter(d => d.id !== docId);
                 saveToCloud();
-                renderLibraryDocs();
             }
         }
 
@@ -1578,7 +1559,6 @@
             });
             
             saveToCloud();
-            renderNewsUI();
             
             titleInput.value = '';
             contentInput.value = '';
@@ -1596,7 +1576,6 @@
                 playClick();
                 newsList = newsList.filter(item => item.id !== newsId);
                 saveToCloud();
-                renderNewsUI();
             }
         }
 
@@ -1659,7 +1638,6 @@
 
             saveToCloud();
             input.value = '';
-            renderWhatsappMessages();
         }
 
         function sendWhatsappMedia(event, type) {
@@ -1687,7 +1665,6 @@
             });
 
             saveToCloud();
-            renderWhatsappMessages();
             event.target.value = '';
         }
 
@@ -1726,7 +1703,6 @@
                         });
 
                         saveToCloud();
-                        renderWhatsappMessages();
                     };
 
                     mediaRecorder.start();
@@ -1757,7 +1733,6 @@
                 playClick();
                 whatsappMessages = whatsappMessages.filter(m => m.id !== msgId);
                 saveToCloud();
-                renderWhatsappMessages();
             }
         }
 
