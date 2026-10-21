@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دولة فينا - البوابة الرسمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- استيراد مكتبة فايربيس (Firebase SDK) السحابية لضمان مزامنة البيانات عبر الهواتف والأجهزة -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
     <style>
         :root {
             --neon-green: #00ffa2;
@@ -644,6 +649,17 @@
     </div>
 
     <script>
+        // إعدادات ربط Firebase السحابية لمزامنة البيانات بين الهواتف والأجهزة المختلفة
+        const firebaseConfig = {
+            databaseURL: "https://fina-state-default-rtdb.firebaseio.com/"
+        };
+        
+        // التحقق من تهيئة فايربيس
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const dbRef = firebase.database().ref('fina_state');
+
         let audioCtx = null;
 
         function initAudio() {
@@ -740,9 +756,9 @@
         };
 
         let currentSession = JSON.parse(localStorage.getItem('fina_user_session')) || null;
-        let newsList = JSON.parse(localStorage.getItem('fina_news_db')) || [];
-        let whatsappMessages = JSON.parse(localStorage.getItem('fina_whatsapp_db')) || [];
-        let libraryDocs = JSON.parse(localStorage.getItem('fina_library_db')) || [];
+        let newsList = [];
+        let whatsappMessages = [];
+        let libraryDocs = [];
         let tempNewsImgData = null;
 
         let tempDocFileData = null;
@@ -753,24 +769,23 @@
         let audioChunks = [];
         let isRecording = false;
 
-        // مزامنة البيانات السحابية والمحلية عبر BroadcastChannel لتحديث كل الأجهزة المفتوحة لحظياً
-        const finaChannel = new BroadcastChannel('fina_state_channel');
-        finaChannel.onmessage = function (event) {
-            if (event.data.type === 'SYNC_DATA') {
-                newsList = event.data.news || newsList;
-                whatsappMessages = event.data.whatsapp || whatsappMessages;
-                libraryDocs = event.data.library || libraryDocs;
+        // استقبال التحديثات من قاعدة البيانات السحابية فور حدوثها على أي جهاز أو موبايل
+        dbRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                newsList = data.news || [];
+                whatsappMessages = data.whatsapp || [];
+                libraryDocs = data.library || [];
                 
                 renderNewsUI();
                 renderWhatsappMessages();
                 renderLibraryDocs();
                 renderCitizensStatus();
             }
-        };
+        });
 
-        function broadcastState() {
-            finaChannel.postMessage({
-                type: 'SYNC_DATA',
+        function syncToCloud() {
+            dbRef.set({
                 news: newsList,
                 whatsapp: whatsappMessages,
                 library: libraryDocs
@@ -894,8 +909,7 @@
                 author: currentSession ? currentSession.name : 'حكومة فينا'
             });
 
-            localStorage.setItem('fina_library_db', JSON.stringify(libraryDocs));
-            broadcastState();
+            syncToCloud();
             renderLibraryDocs();
 
             titleInput.value = '';
@@ -915,8 +929,7 @@
             if (confirm('هل أنت متأكد من حذف هذا المستند؟')) {
                 playClick();
                 libraryDocs = libraryDocs.filter(d => d.id !== docId);
-                localStorage.setItem('fina_library_db', JSON.stringify(libraryDocs));
-                broadcastState();
+                syncToCloud();
                 renderLibraryDocs();
             }
         }
@@ -985,7 +998,6 @@
                     currentSession.avatar = newAvatarUrl;
                     localStorage.setItem('fina_user_session', JSON.stringify(currentSession));
                     localStorage.setItem('fina_avatar_' + currentSession.name, newAvatarUrl);
-                    broadcastState();
                     
                     playSuccess();
                     renderSessionUI();
@@ -1046,7 +1058,6 @@
                         avatar: localStorage.getItem('fina_avatar_' + citizen) || DEFAULT_AVATAR
                     };
                     localStorage.setItem('fina_user_session', JSON.stringify(currentSession));
-                    broadcastState();
                     renderSessionUI();
                     renderNewsUI();
                     renderCitizensStatus();
@@ -1123,7 +1134,6 @@
             localStorage.removeItem('fina_user_session');
             currentSession = null;
             closeLogoutModal();
-            broadcastState();
             renderSessionUI();
             renderNewsUI();
             renderCitizensStatus();
@@ -1173,8 +1183,7 @@
                 img: tempNewsImgData || null
             });
             
-            localStorage.setItem('fina_news_db', JSON.stringify(newsList));
-            broadcastState();
+            syncToCloud();
             renderNewsUI();
             
             titleInput.value = '';
@@ -1194,8 +1203,7 @@
             if (confirm('هل أنت متأكد من أنك تريد حذف هذا الخبر؟')) {
                 playClick();
                 newsList = newsList.filter(item => item.id !== newsId);
-                localStorage.setItem('fina_news_db', JSON.stringify(newsList));
-                broadcastState();
+                syncToCloud();
                 renderNewsUI();
             }
         }
@@ -1258,8 +1266,7 @@
                 time: timeStr
             });
 
-            localStorage.setItem('fina_whatsapp_db', JSON.stringify(whatsappMessages));
-            broadcastState();
+            syncToCloud();
             input.value = '';
             renderWhatsappMessages();
         }
@@ -1289,8 +1296,7 @@
                 time: timeStr
             });
 
-            localStorage.setItem('fina_whatsapp_db', JSON.stringify(whatsappMessages));
-            broadcastState();
+            syncToCloud();
             renderWhatsappMessages();
             event.target.value = '';
         }
@@ -1329,8 +1335,7 @@
                             time: timeStr
                         });
 
-                        localStorage.setItem('fina_whatsapp_db', JSON.stringify(whatsappMessages));
-                        broadcastState();
+                        syncToCloud();
                         renderWhatsappMessages();
                     };
 
@@ -1361,8 +1366,7 @@
             if (confirm('هل أنت متأكد من حذف هذه الرسالة؟')) {
                 playClick();
                 whatsappMessages = whatsappMessages.filter(m => m.id !== msgId);
-                localStorage.setItem('fina_whatsapp_db', JSON.stringify(whatsappMessages));
-                broadcastState();
+                syncToCloud();
                 renderWhatsappMessages();
             }
         }
