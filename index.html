@@ -145,7 +145,7 @@
         .dot-red { background-color: #7f1d1d; }
         .dot-white { background-color: #ffffff; }
 
-        /* الشريط الأسود أسفل القوائم المباشر لطي وفتح القوائم */
+        /* الشريط الأسود تماماً تحت شريط القوائم لطي أو إظهار القوائم */
         .global-toggle-bar {
             background-color: #0f172a;
             color: #ffffff;
@@ -164,7 +164,7 @@
             background-color: #1e293b;
         }
 
-        /* زر العائم لإظهار القوائم في حال تم إخفاؤها تماماً لكي لا يضيع المستخدم */
+        /* زر العائم لإظهار القوائم في حال تم إخفاؤها تماماً */
         .floating-show-btn {
             position: fixed;
             top: 10px; right: 20px;
@@ -481,6 +481,7 @@
             margin: 0; background: #efeae2; border-radius: 0;
             display: flex; flex-direction: column; box-shadow: none;
             border: none; overflow: hidden;
+            position: relative;
         }
 
         .whatsapp-header-bar {
@@ -488,10 +489,11 @@
             font-size: 1.1rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             position: relative;
+            z-index: 10;
         }
 
         .whatsapp-messages-area {
-            flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;
+            flex: 1; padding: 12px 12px 170px 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;
         }
 
         .whatsapp-msg {
@@ -504,20 +506,49 @@
         .msg-time { font-size: 0.65rem; color: #667781; text-align: left; margin-top: 3px; }
         .btn-delete-msg { position: absolute; top: 4px; left: 6px; background: transparent; border: none; color: #ef4444; font-size: 0.75rem; cursor: pointer; font-weight: 700; }
 
-        /* شريط الكتابة والمتحكمات الخاصة بالتواصل */
+        /* شريط الكتابة الصغير مرفوع للأعلى بمسافة 150px والزرار فوقه */
         .whatsapp-input-bar {
-            background: #f0f2f5; padding: 6px 10px; display: flex; align-items: center; gap: 6px;
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            padding: 10px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            border: 2px solid var(--header-bg);
+            z-index: 20;
             transition: all 0.3s ease;
         }
         .whatsapp-input-bar.collapsed {
             display: none !important;
         }
 
+        .whatsapp-buttons-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
         .whatsapp-input {
-            flex: 1; padding: 8px 12px; border-radius: 20px; border: 1px solid #cbd5e1; outline: none; font-size: 0.9rem; background: #ffffff;
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            outline: none;
+            font-size: 0.9rem;
+            background: #f8fafc;
+            text-align: right;
         }
         .whatsapp-btn {
-            background: #007a05; color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; font-weight: bold; flex-shrink: 0;
+            background: #007a05; color: white; border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; font-weight: bold; flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
         }
         .whatsapp-btn:hover { background: #005a04; }
 
@@ -584,7 +615,7 @@
         <div class="art-shape art-shape-abstract-1"></div>
     </div>
 
-    <!-- زر عائم يظهر لو شريط القوائم اختفى تماماً عشان تقدر ترجعه بسهولة -->
+    <!-- زر عائم لإظهار القوائم في حال تم إخفاؤها تماماً -->
     <div id="floatingShowBtn" class="floating-show-btn" onclick="toggleGlobalHeader()" title="إظهار شريط القوائم">⌃</div>
 
     <!-- حاوية شريط القوائم الرئيسي مع الشريط الأسود أسفله -->
@@ -851,15 +882,17 @@
                 
                 <div id="whatsappMessages" class="whatsapp-messages-area"></div>
 
+                <!-- شريط الكتابة الصغير مرفوع للأعلى (150px) والزرار فوقه -->
                 <div id="whatsappInputBar" class="whatsapp-input-bar">
                     <input type="file" id="whatsappImgInput" accept="image/*" style="display: none;" onchange="sendWhatsappMedia(event, 'image')">
                     <input type="file" id="whatsappVideoInput" accept="video/*" style="display: none;" onchange="sendWhatsappMedia(event, 'video')">
                     
-                    <button class="whatsapp-btn" onclick="document.getElementById('whatsappImgInput').click()" title="إرسال صورة">📷</button>
-                    <button class="whatsapp-btn" onclick="document.getElementById('whatsappVideoInput').click()" title="إرسال فيديو">🎥</button>
-                    <button class="whatsapp-btn" id="micBtn" onclick="toggleVoiceRecord()" title="تسجيل صوتي">🎤</button>
-                    <!-- زر الإرسال أصبح مباشرة فوق/بجانب المايك -->
-                    <button class="whatsapp-btn" onclick="sendWhatsappText()" title="إرسال">➤</button>
+                    <div class="whatsapp-buttons-row">
+                        <button class="whatsapp-btn" onclick="document.getElementById('whatsappImgInput').click()" title="إرسال صورة">📷</button>
+                        <button class="whatsapp-btn" onclick="document.getElementById('whatsappVideoInput').click()" title="إرسال فيديو">🎥</button>
+                        <button class="whatsapp-btn" id="micBtn" onclick="toggleVoiceRecord()" title="تسجيل صوتي">🎤</button>
+                        <button class="whatsapp-btn" onclick="sendWhatsappText()" title="إرسال">➤</button>
+                    </div>
                     
                     <input type="text" id="whatsappInput" class="whatsapp-input" placeholder="اكتب رسالة..." onkeypress="handleWhatsappKey(event)">
                 </div>
@@ -1857,7 +1890,7 @@
                 const msgClass = isMyMsg ? 'whatsapp-msg my-msg' : 'whatsapp-msg';
                 const deleteBtn = isMyMsg ? `<button class="btn-delete-msg" onclick="deleteWhatsappMsg(${msg.id}, '${escapeHTML(msg.sender)}')">✕</button>` : '';
                 
-                let contentHtml = {};
+                let contentHtml = '';
                 if (msg.type === 'audio') {
                     contentHtml = `<audio controls src="${msg.content}" style="max-width: 200px; height: 35px;"></audio>`;
                 } else if (msg.type === 'image') {
