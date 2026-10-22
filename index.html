@@ -54,8 +54,17 @@
         .art-left-1 { width: 200px; height: 200px; background: #3d2314; top: 35%; left: -90px; opacity: 1; }
         .art-shape-abstract-1 { width: 260px; height: 260px; background: #2d180c; top: 15%; left: -100px; border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; opacity: 1; }
 
-        header {
+        /* حاوية الهيدر الكاملة لتسهيل الإخفاء والإظهار */
+        .header-wrapper {
             position: sticky; top: 0; z-index: 1000;
+            width: 100%;
+            transition: transform 0.35s ease;
+        }
+        .header-wrapper.hidden-header {
+            transform: translateY(-100%);
+        }
+
+        header {
             background-color: var(--header-bg);
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             width: 100%;
@@ -135,6 +144,45 @@
         .dot-yellow { background-color: #713f12; }
         .dot-red { background-color: #7f1d1d; }
         .dot-white { background-color: #ffffff; }
+
+        /* الشريط الأسود أسفل القوائم المباشر لطي وفتح القوائم */
+        .global-toggle-bar {
+            background-color: #0f172a;
+            color: #ffffff;
+            height: 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            font-size: 1.1rem;
+            font-weight: 900;
+            user-select: none;
+            transition: background 0.2s;
+        }
+        .global-toggle-bar:hover {
+            background-color: #1e293b;
+        }
+
+        /* زر العائم لإظهار القوائم في حال تم إخفاؤها تماماً لكي لا يضيع المستخدم */
+        .floating-show-btn {
+            position: fixed;
+            top: 10px; right: 20px;
+            background: #0f172a;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            border-radius: 50%;
+            width: 45px; height: 45px;
+            display: none;
+            justify-content: center; align-items: center;
+            font-size: 1.4rem; font-weight: bold;
+            cursor: pointer;
+            z-index: 1200;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        .floating-show-btn.visible {
+            display: flex;
+        }
 
         .main-wrapper {
             position: relative; z-index: 1;
@@ -418,7 +466,7 @@
             margin-top: 5px;
         }
 
-        /* جعل قسم التواصل ملء الشاشة بالكامل ومناسب للموبايل */
+        /* قسم التواصل ملء الشاشة بالكامل ومناسب للموبايل */
         #tab-contact {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             padding: 0;
@@ -439,6 +487,7 @@
             background: #007a05; color: white; padding: 10px 15px;
             font-size: 1.1rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: relative;
         }
 
         .whatsapp-messages-area {
@@ -455,10 +504,15 @@
         .msg-time { font-size: 0.65rem; color: #667781; text-align: left; margin-top: 3px; }
         .btn-delete-msg { position: absolute; top: 4px; left: 6px; background: transparent; border: none; color: #ef4444; font-size: 0.75rem; cursor: pointer; font-weight: 700; }
 
-        /* تصغير شريط الكتابة وتكييفه للهاتف */
+        /* شريط الكتابة والمتحكمات الخاصة بالتواصل */
         .whatsapp-input-bar {
             background: #f0f2f5; padding: 6px 10px; display: flex; align-items: center; gap: 6px;
+            transition: all 0.3s ease;
         }
+        .whatsapp-input-bar.collapsed {
+            display: none !important;
+        }
+
         .whatsapp-input {
             flex: 1; padding: 8px 12px; border-radius: 20px; border: 1px solid #cbd5e1; outline: none; font-size: 0.9rem; background: #ffffff;
         }
@@ -466,6 +520,16 @@
             background: #007a05; color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; font-weight: bold; flex-shrink: 0;
         }
         .whatsapp-btn:hover { background: #005a04; }
+
+        /* زر السهم المقلوب (^) في شريط التواصل الداخلي */
+        .toggle-bar-btn {
+            background: rgba(255,255,255,0.25);
+            color: white; border: 1px solid white; border-radius: 50%;
+            width: 34px; height: 34px; font-size: 1.1rem; font-weight: 900;
+            cursor: pointer; display: flex; justify-content: center; align-items: center;
+            transition: transform 0.2s;
+        }
+        .toggle-bar-btn:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
 
         .btn-back-home {
             background-color: var(--neon-green); color: #0f172a; padding: 10px 20px; border: none; border-radius: 8px; font-weight: 900; font-size: 1rem; cursor: pointer; margin-top: 1rem; transition: transform 0.2s;
@@ -520,34 +584,45 @@
         <div class="art-shape art-shape-abstract-1"></div>
     </div>
 
-    <header id="mainHeader">
-        <div class="nav-container">
-            <div class="logo-section" onclick="playClick(); showTab('home')">
-                <img id="navProfilePic" src="https://i.ibb.co/VYg5CPvq/image.jpg" alt="شعار فينا" class="logo-img">
-                <span class="site-title">دولة فينا</span>
-            </div>
+    <!-- زر عائم يظهر لو شريط القوائم اختفى تماماً عشان تقدر ترجعه بسهولة -->
+    <div id="floatingShowBtn" class="floating-show-btn" onclick="toggleGlobalHeader()" title="إظهار شريط القوائم">⌃</div>
 
-            <div class="nav-links-wrapper">
-                <ul class="nav-links">
-                    <li><a id="nav-home" class="active" onclick="playClick(); showTab('home')">الصفحة الأساسية</a></li>
-                    <li><a id="nav-news" onclick="playClick(); showTab('news')">الأخبار</a></li>
-                    <li><a id="nav-market" onclick="playClick(); showTab('market')">السوق</a></li>
-                    <li><a id="nav-library" onclick="playClick(); showTab('library')">المكتبة الإلكترونية</a></li>
-                    <li><a id="nav-other" onclick="playClick(); showTab('other')">أخرى</a></li>
-                    <li><a id="nav-contact" onclick="playClick(); showTab('contact')">التواصل</a></li>
-                    <li><a id="nav-login" onclick="playClick(); showTab('login')">تسجيل الدخول والبيانات</a></li>
-                </ul>
+    <!-- حاوية شريط القوائم الرئيسي مع الشريط الأسود أسفله -->
+    <div id="headerWrapper" class="header-wrapper">
+        <header id="mainHeader">
+            <div class="nav-container">
+                <div class="logo-section" onclick="playClick(); showTab('home')">
+                    <img id="navProfilePic" src="https://i.ibb.co/VYg5CPvq/image.jpg" alt="شعار فينا" class="logo-img">
+                    <span class="site-title">دولة فينا</span>
+                </div>
+
+                <div class="nav-links-wrapper">
+                    <ul class="nav-links">
+                        <li><a id="nav-home" class="active" onclick="playClick(); showTab('home')">الصفحة الأساسية</a></li>
+                        <li><a id="nav-news" onclick="playClick(); showTab('news')">الأخبار</a></li>
+                        <li><a id="nav-market" onclick="playClick(); showTab('market')">السوق</a></li>
+                        <li><a id="nav-library" onclick="playClick(); showTab('library')">المكتبة الإلكترونية</a></li>
+                        <li><a id="nav-other" onclick="playClick(); showTab('other')">أخرى</a></li>
+                        <li><a id="nav-contact" onclick="playClick(); showTab('contact')">التواصل</a></li>
+                        <li><a id="nav-login" onclick="playClick(); showTab('login')">تسجيل الدخول والبيانات</a></li>
+                    </ul>
+                </div>
             </div>
+            
+            <div class="color-bar">
+                <div class="color-dot dot-green" onclick="playClick(); changeHeaderTheme('#007a05')"></div>
+                <div class="color-dot dot-blue" onclick="playClick(); changeHeaderTheme('#1e3a8a')"></div>
+                <div class="color-dot dot-yellow" onclick="playClick(); changeHeaderTheme('#713f12')"></div>
+                <div class="color-dot dot-red" onclick="playClick(); changeHeaderTheme('#7f1d1d')"></div>
+                <div class="color-dot dot-white" onclick="playClick(); changeHeaderTheme('#ffffff')"></div>
+            </div>
+        </header>
+
+        <!-- الشريط الأسود تماماً تحت شريط القوائم لطي أو إظهار القوائم -->
+        <div id="globalToggleBar" class="global-toggle-bar" onclick="toggleGlobalHeader()" title="إخفاء/إظهار شريط القوائم">
+            <span id="globalToggleArrow">⌃</span>
         </div>
-        
-        <div class="color-bar">
-            <div class="color-dot dot-green" onclick="playClick(); changeHeaderTheme('#007a05')"></div>
-            <div class="color-dot dot-blue" onclick="playClick(); changeHeaderTheme('#1e3a8a')"></div>
-            <div class="color-dot dot-yellow" onclick="playClick(); changeHeaderTheme('#713f12')"></div>
-            <div class="color-dot dot-red" onclick="playClick(); changeHeaderTheme('#7f1d1d')"></div>
-            <div class="color-dot dot-white" onclick="playClick(); changeHeaderTheme('#ffffff')"></div>
-        </div>
-    </header>
+    </div>
 
     <div class="main-wrapper">
         
@@ -767,21 +842,26 @@
             <div class="whatsapp-container">
                 <div class="whatsapp-header-bar">
                     <span>مجموعة دولة فينا الرسمية 🟢</span>
-                    <button class="btn-back-home" style="margin: 0; padding: 4px 10px; font-size: 0.85rem;" onclick="playClick(); showTab('home')">خروج</button>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <!-- زر السهم المقلوب (^) لإخفاء وإظهار شريط الكتابة الداخلي الخاص بالتواصل -->
+                        <button class="toggle-bar-btn" id="toggleBarBtn" onclick="toggleWhatsappBar()" title="إخفاء/إظهار شريط الكتابة">⌃</button>
+                        <button class="btn-back-home" style="margin: 0; padding: 4px 10px; font-size: 0.85rem;" onclick="playClick(); showTab('home')">خروج</button>
+                    </div>
                 </div>
                 
                 <div id="whatsappMessages" class="whatsapp-messages-area"></div>
 
-                <div class="whatsapp-input-bar">
+                <div id="whatsappInputBar" class="whatsapp-input-bar">
                     <input type="file" id="whatsappImgInput" accept="image/*" style="display: none;" onchange="sendWhatsappMedia(event, 'image')">
                     <input type="file" id="whatsappVideoInput" accept="video/*" style="display: none;" onchange="sendWhatsappMedia(event, 'video')">
                     
                     <button class="whatsapp-btn" onclick="document.getElementById('whatsappImgInput').click()" title="إرسال صورة">📷</button>
                     <button class="whatsapp-btn" onclick="document.getElementById('whatsappVideoInput').click()" title="إرسال فيديو">🎥</button>
                     <button class="whatsapp-btn" id="micBtn" onclick="toggleVoiceRecord()" title="تسجيل صوتي">🎤</button>
+                    <!-- زر الإرسال أصبح مباشرة فوق/بجانب المايك -->
+                    <button class="whatsapp-btn" onclick="sendWhatsappText()" title="إرسال">➤</button>
                     
                     <input type="text" id="whatsappInput" class="whatsapp-input" placeholder="اكتب رسالة..." onkeypress="handleWhatsappKey(event)">
-                    <button class="whatsapp-btn" onclick="sendWhatsappText()" title="إرسال">➤</button>
                 </div>
             </div>
         </div>
@@ -1214,9 +1294,7 @@
         function acceptOffer(mailId, itemId) {
             if (confirm('عند قبول العرض ستتم عملية البيع وتختفي السلعة من السوق نهائياً، هل أنت موافق؟')) {
                 playSuccess();
-                // حذف السلعة من السوق
                 marketItems = marketItems.filter(i => i.id !== itemId);
-                // حذف جميع الرسائل الخاصة بهذه السلعة
                 marketMails = marketMails.filter(m => m.itemId !== itemId);
                 saveToCloud();
                 renderMailMessages();
@@ -1605,6 +1683,38 @@
             }).join('');
         }
 
+        // دالة طي وإظهار شريط القوائم الرئيسي في الموقع كله باستخدام الشريط الأسود والسهم
+        function toggleGlobalHeader() {
+            playClick();
+            const wrapper = document.getElementById('headerWrapper');
+            const arrow = document.getElementById('globalToggleArrow');
+            const floatingBtn = document.getElementById('floatingShowBtn');
+
+            if (wrapper.classList.contains('hidden-header')) {
+                wrapper.classList.remove('hidden-header');
+                arrow.textContent = '⌃'; // السهم يشير للأعلى
+                floatingBtn.classList.remove('visible');
+            } else {
+                wrapper.classList.add('hidden-header');
+                arrow.textContent = '⌄'; // السهم يشير للأسفل عند الإخفاء
+                floatingBtn.classList.add('visible');
+            }
+        }
+
+        // دالة التحكم في إخفاء وإظهار شريط الكتابة الداخلي الخاص بقسم التواصل
+        function toggleWhatsappBar() {
+            playClick();
+            const bar = document.getElementById('whatsappInputBar');
+            const btn = document.getElementById('toggleBarBtn');
+            if (bar.classList.contains('collapsed')) {
+                bar.classList.remove('collapsed');
+                btn.innerHTML = '⌃';
+            } else {
+                bar.classList.add('collapsed');
+                btn.innerHTML = '⌄';
+            }
+        }
+
         function handleWhatsappKey(e) {
             if (e.key === 'Enter') sendWhatsappText();
         }
@@ -1747,7 +1857,7 @@
                 const msgClass = isMyMsg ? 'whatsapp-msg my-msg' : 'whatsapp-msg';
                 const deleteBtn = isMyMsg ? `<button class="btn-delete-msg" onclick="deleteWhatsappMsg(${msg.id}, '${escapeHTML(msg.sender)}')">✕</button>` : '';
                 
-                let contentHtml = '';
+                let contentHtml = {};
                 if (msg.type === 'audio') {
                     contentHtml = `<audio controls src="${msg.content}" style="max-width: 200px; height: 35px;"></audio>`;
                 } else if (msg.type === 'image') {
